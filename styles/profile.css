@@ -1,11 +1,11 @@
-#outer-container {
+#outer-container, #user-container{
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .sidenav {
     width: 300px; 
-    /* position: sticky;  */
     z-index: 1; 
     top: 100px; 
     right:0;

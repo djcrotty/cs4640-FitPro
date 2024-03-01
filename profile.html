@@ -74,16 +74,16 @@
                         <p>
                             description of user  
                         </p>
-                        <h3> <!--Should change based on calendar-->
+                        <h4> <!--Should change based on calendar-->
                             Todays workout is Chest
-                        </h3>
+                        </h4>
                     </div>
                     <div id="calendar">
                         <img src="./static/calendar_placeholder.PNG" alt="Calendar Placeholder">
                     </div>
                 </div>
-                <div id="workouts-container">
-                    <div id="workouts-selector-progress">
+                <div class="p-3 m-3 bg-secondary" id="workouts-container">
+                    <div class="d-flex flex-row align-items-center justify-content-between" id="workouts-selector-progress">
                         <div>
                             <div>
                                 <h4>
@@ -95,28 +95,20 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="row align-items-start" id="workout-selector">
-                                <div class="col">
-                                    Chest
-                                </div>
-                                <div class="col">
-                                    Legs
-                                </div>
-                                <div class="col">
-                                    Push
-                                </div>
-                                <div class="col">
-                                    Pull
-                                </div>                                           
-                            </div>
+                            <div class="btn-group" role="group" id="workout-selector">
+                                <button type="button" class="btn btn-primary">Chest</button>
+                                <button type="button" class="btn btn-primary">Legs</button>
+                                <button type="button" class="btn btn-primary">Push</button>
+                                <button type="button" class="btn btn-primary">Pull</button>
+                              </div>
                         </div>
-                        <button formaction="./workouts.html">
+                        <button formaction="workouts.html" class="border btn btn-light h-25">
                             Create New Workout +
                         </button>
                     </div>
                     <div id="table">
-                        <table>
-                            <tr>
+                        <table class="table table-striped table-dark">
+                            <tr >
                                 <th>Position</th>
                                 <th>Exercise</th>
                                 <th>Completion</th>
@@ -160,24 +152,24 @@
                     </div>
                 </div>
             </div>
-            <div class="sidenav"id="friends-sidebar">
-                <h2>Friends</h2>
+            <div class="sidenav bg-secondary"id="friends-sidebar">
+                <h2 class="m-3">Friends</h2>
                 <ul>
                     <li id="friend-1">
                         <a href="./profile.html">Example Friend 1</a>
-                        <button formaction="./profile.html">Profile</button>
+                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-2">
                         <a href="./profile.html">Example Friend 2</a>
-                        <button formaction="./profile.html">Profile</button>
+                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-3">
                         <a href="./profile.html">Example Friend 3</a>
-                        <button formaction="./profile.html">Profile</button>
+                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-4">
                         <a href="./profile.html">Example Friend 4</a>
-                        <button formaction="./profile.html">Profile</button>
+                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
                     </li>
                 </ul>
             </div>

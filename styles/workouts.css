@@ -1,0 +1,13 @@
+.outer-container {
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#workout-schedule-container ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

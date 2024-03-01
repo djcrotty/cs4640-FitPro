@@ -63,21 +63,23 @@
                 </div>
             </div>
         </nav>
-        <div>
-            <div id="new-workouts-container">
+        <div class="outer-container">
+            <div class="p-3 m-3 bg-secondary" id="new-workouts-container">
                 <h1>Workouts</h1>
                 <h2>Find workouts others have created</h2>
                 <div>
-                    <div id="table-header">
+                    <div class="d-flex justify-content-between" id="table-header">
                         <div>
                             <p>Sort by</p>
-                            <button>Popularity</button>
-                            <button>Friends</button>
-                            <button>Recent</button>
+                            <div class="btn-group">
+                                <button class="border btn btn-secondary">Popularity</button>
+                                <button class="border btn btn-secondary">Friends</button>
+                                <button class="border btn btn-secondary">Recent</button>
+                            </div>
                         </div>
-                        <button>Share your workout + </button>
+                        <button class="border btn btn-light h-25">Share your workout + </button>
                     </div>
-                    <table id="new-workouts-container">
+                    <table class="table table-striped table-dark" id="new-workouts-container">
                         <tr>
                             <th>Stars</th>
                             <th>User</th>
@@ -106,20 +108,20 @@
                     </table>
                 </div>
             </div>
-            <div id="workout-schedule-container">
-                <h2>Workout Schedule</h2>
-                <ul>
-                    <li>Monday</li>
-                    <li>Tuesday</li>
-                    <li>Wednesday</li>
-                    <li>Thursday</li>
-                    <li>Friday</li>
-                    <li>Saturday</li>
-                    <li>Sunday</li>
+            <div class="p-3 m-3 bg-secondary" id="workout-schedule-container">
+                <h2 class="p-3">Workout Schedule</h2>
+                <ul class="p-3 d-flex flex-column justify-content-evenly list-group list-group-flush ">
+                    <li><p>Monday - Chest</p><button class="border btn btn-light">Edit</button></li>
+                    <li><p>Tuesday- Rest</p> <button class="border btn btn-light">Edit</button></li>
+                    <li><p>Wednesday- Legs </p><button class="border btn btn-light">Edit</button></li>
+                    <li><p>Thursday- Rest </p><button class="border btn btn-light">Edit</button></li>
+                    <li><p>Friday- Pull </p><button class="border btn btn-light">Edit</button></li>
+                    <li><p>Saturday- Push </p><button class="border btn btn-light">Edit</button></li>
+                    <li><p>Sunday- Chest </p><button class="border btn btn-light">Edit</button></li>
                 </ul>
             </div>
-            <div id="workouts-container">
-                <div id="workouts-selector-progress">
+            <div class="p-3 m-3 bg-secondary" id="workouts-container">
+                <div class="d-flex flex-row align-items-center justify-content-between" id="workouts-selector-progress">
                     <div>
                         <div>
                             <h4>
@@ -131,28 +133,20 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="row align-items-start" id="workout-selector">
-                            <div class="col">
-                                Chest
-                            </div>
-                            <div class="col">
-                                Legs
-                            </div>
-                            <div class="col">
-                                Push
-                            </div>
-                            <div class="col">
-                                Pull
-                            </div>                                           
-                        </div>
+                        <div class="btn-group" role="group" id="workout-selector">
+                            <button type="button" class="btn btn-primary">Chest</button>
+                            <button type="button" class="btn btn-primary">Legs</button>
+                            <button type="button" class="btn btn-primary">Push</button>
+                            <button type="button" class="btn btn-primary">Pull</button>
+                          </div>
                     </div>
-                    <button formaction="./workouts.html">
+                    <button formaction="workouts.html" class="border btn btn-light h-25">
                         Create New Workout +
                     </button>
                 </div>
                 <div id="table">
-                    <table>
-                        <tr>
+                    <table class="table table-striped table-dark">
+                        <tr >
                             <th>Position</th>
                             <th>Exercise</th>
                             <th>Completion</th>
