@@ -44,7 +44,7 @@ nav ul li a {
     color: white; 
 }
 
-a:hover, a:active {
+a:hover, a:active, #nav-current {
     color: #f8f9fa;
 }
 
