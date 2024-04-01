@@ -80,6 +80,15 @@ body {
     flex-grow: 1;
 }
 
+.navbar-toggler-icon {
+  filter: invert(100%); /* Inverts the color, assuming the original is black */
+}
+
+.navbar-toggler-icon:hover {
+  filter: invert(100%); /* Inverts the color, assuming the original is black */
+  filter: brightness(75%);
+}
+
 /*Screen Adjusting Rules */
 @media (max-width: 768px) {
   nav ul {
