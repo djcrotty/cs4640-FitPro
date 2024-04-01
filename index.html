@@ -1,91 +1,90 @@
 <!-- https://cs4640.cs.virginia.edu/vpv4ds/cs4640-FitPro/ -->
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
-<head>
-    <meta name="contributions" content="Howard - index and leaderboard, Dylan - profile and workouts">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <meta name="author" content="Dylan Crotty, Howard Bell">
-    <meta name="description" content="Index base page for FitPro, a way for gymgoers to track and compete">
-    <meta name="keywords" content="Dylan Crotty Howard Bell Index FitPro Gym Compete">
-    <meta property="og:title" content="page">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="https://cs4640.cs.virginia.edu/vpv4ds/cs4640-FitPro/index.html">
-    <meta property="og:description" content="Index base page for FitPro, a way for gymgoers to track and compete">
-    <meta property="og:site_name" content="FitPro - Index">
-    <title>FitPro - Index</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/main.css">
-</head>  
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
-        <div class="container">
+   <head>
+      <meta name="contributions" content="Howard - index and leaderboard, Dylan - profile and workouts">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="author" content="Dylan Crotty, Howard Bell">
+      <meta name="description" content="Index base page for FitPro, a way for gymgoers to track and compete">
+      <meta name="keywords" content="Dylan Crotty Howard Bell Index FitPro Gym Compete">
+      <meta property="og:title" content="page">
+      <meta property="og:type" content="website">
+      <meta property="og:image" content="">
+      <meta property="og:url" content="https://cs4640.cs.virginia.edu/vpv4ds/cs4640-FitPro/index.html">
+      <meta property="og:description" content="Index base page for FitPro, a way for gymgoers to track and compete">
+      <meta property="og:site_name" content="FitPro - Index">
+      <title>FitPro - Index</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link rel="stylesheet" href="styles/main.css">
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
+            <img src="flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
             </a>
             <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
-                &#9776;
+            &#9776;
             </button>
             <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="leaderboards.html" class="nav-link">Leaderboard</a></li>
-                    <li class="nav-item"><a href="profile.html" class="nav-link">Profile</a></li>
-                    <li class="nav-item"><a href="workouts.html" class="nav-link">Workouts</a></li>
-                </ul>
-                <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                    <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
-                    <li class="dropdown order-1">
-                        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
-                        <ul class="dropdown-menu dropdown-menu-right mt-1">
-                          <li class="p-3">
-                                <form class="form" role="form">
-                                    <div class="form-group">
-                                        <input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                    </div>
-                                    <div class="form-group text-xs-center">
-                                        <small><a href="#">Forgot password?</a></small>
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+               <ul class="nav navbar-nav">
+                  <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                  <li class="nav-item"><a href="leaderboards.html" class="nav-link">Leaderboard</a></li>
+                  <li class="nav-item"><a href="profile.html" class="nav-link">Profile</a></li>
+                  <li class="nav-item"><a href="workouts.html" class="nav-link">Workouts</a></li>
+               </ul>
+               <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                  <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+                  <li class="dropdown order-1">
+                     <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
+                     <ul class="dropdown-menu dropdown-menu-right mt-1">
+                        <li class="p-3">
+                           <form class="form" role="form">
+                              <div class="form-group">
+                                 <input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
+                              </div>
+                              <div class="form-group">
+                                 <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
+                              </div>
+                              <div class="form-group">
+                                 <button type="submit" class="btn btn-primary btn-block">Login</button>
+                              </div>
+                              <div class="form-group text-xs-center">
+                                 <small><a href="#">Forgot password?</a></small>
+                              </div>
+                           </form>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
             </div>
-        </div>
-    </nav>
-    <div class="container">
-        <header>
+         </div>
+      </nav>
+      <div class="container">
+         <header>
             <h1>Welcome to FitPro</h1>
             <p>Your ultimate gym partner.</p>
-        </header>
-        <main>
+         </header>
+         <main>
             <section class="intro">
-                <h2>Track and Compete</h2>
-                <p>
-                    Our website is dedicated to revolutionizing the fitness journey for lifters everywhere. By focusing on personalized workout plans, progress tracking, and a unique feature that allows users to compare their progress with friends, we aim to create a motivating and dynamic fitness environment. Whether you're a beginner or an experienced lifter, our platform is designed to adapt to your individual fitness level and goals, ensuring that every workout is tailored to your needs. Our goal is to empower users to consistently push their limits, achieve their fitness milestones, and stay connected with their friends, turning the solitary pursuit of strength into a shared, inspiring journey. Through our innovative features, we're committed to helping you stay motivated, track your achievements, and celebrate every step of your fitness journey with a community that understands and supports your passion.</p>
+               <h2>Track and Compete</h2>
+               <p>
+                  Our website is dedicated to revolutionizing the fitness journey for lifters everywhere. By focusing on personalized workout plans, progress tracking, and a unique feature that allows users to compare their progress with friends, we aim to create a motivating and dynamic fitness environment. Whether you're a beginner or an experienced lifter, our platform is designed to adapt to your individual fitness level and goals, ensuring that every workout is tailored to your needs. Our goal is to empower users to consistently push their limits, achieve their fitness milestones, and stay connected with their friends, turning the solitary pursuit of strength into a shared, inspiring journey. Through our innovative features, we're committed to helping you stay motivated, track your achievements, and celebrate every step of your fitness journey with a community that understands and supports your passion.
+               </p>
             </section>
-
             <section class="features">
-                <h3>Features of FitPro</h3>
-                <ul>
-                    <li>Real-time Tracking</li>
-                    <li>Global Leaderboards</li>
-                    <li>Personalized Workouts</li>
-                    <li>Community Challenges</li>
-                </ul>
+               <h3>Features of FitPro</h3>
+               <ul>
+                  <li>Real-time Tracking</li>
+                  <li>Global Leaderboards</li>
+                  <li>Personalized Workouts</li>
+                  <li>Community Challenges</li>
+               </ul>
             </section>
-        </main>
-
-        <footer>
+         </main>
+         <footer>
             <nav>
                <ul style="list-style: none; padding: 0; text-align: center;">
                   <li style="display: inline; margin-right: 20px;"><a href="index.html" style="text-decoration: none; color: white;">Home</a></li>
@@ -96,9 +95,9 @@
             </nav>
             <p>&copy; 2024 FitPro. All rights reserved.</p>
          </footer>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   </body>
 </html>
