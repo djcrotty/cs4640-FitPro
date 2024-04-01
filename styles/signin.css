@@ -1,12 +1,4 @@
-.parent {
-  display: grid;
-  grid-template-rows: auto 1fr auto; /* Header, content, footer */
-  grid-template-columns: 200px 1fr 200px; /* Sidebar, content, sidebar */
-  gap: 10px; /* Adds some space between grid items */
-  min-height: 100vh; /* Full height of viewport */
-}
-
-header, footer, .left-side, .right-side, main {
+header, footer {
   padding: 20px; /* Adds some padding inside each section */
 }
 
@@ -71,38 +63,31 @@ a:active {
 }
 body {
   text-align: center;
-}
-.top-title {
-  font-weight: bold;
-  font-size: x-large;
-  margin: 0px;
-  padding: 0px;
+  background-color: #343a40;
 }
 
-.carousel-caption {
-  padding: 0px;
+label{
   color: white;
-  text-shadow: 
-    -1px -1px 0 #000,  
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000;
+  display: block;
+  margin-bottom: 10px;
 }
+.top-title {
+  margin-bottom: 10px;
+  font-size: x-large;
+  color: white;
+}
+
+
 
 /*Screen Adjusting Rules */
 @media (max-width: 768px) {
-  .parent {
-    grid-template-columns: 1fr; /* Stack everything on small screens */
-  }
-  
-  .left-side, .right-side {
-    /* Optional: Hide sidebars on smaller screens */
-    display: none;
+  nav ul {
+      flex-direction: column; 
   }
 
-  header, footer {
-    /* Ensuring header and footer still span full width */
-    grid-column: 1;
+  nav ul li {
+      margin-bottom: 10px;
   }
 }
+
 
