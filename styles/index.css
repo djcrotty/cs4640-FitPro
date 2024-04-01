@@ -1,0 +1,103 @@
+.parent {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, content, footer */
+  grid-template-columns: 200px 1fr 200px; /* Sidebar, content, sidebar */
+  gap: 10px; /* Adds some space between grid items */
+  min-height: 100vh; /* Full height of viewport */
+}
+
+header, footer, .left-side, .right-side, main {
+  padding: 20px; /* Adds some padding inside each section */
+}
+
+#sign-in {
+  margin: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #343a40;
+  color: white;
+  border-color: white;
+  border-style: solid;
+}
+
+#sign-in:hover {
+  cursor: pointer;
+  filter: brightness(75%);
+}
+
+#sign-in:active {
+  cursor: pointer;
+  filter: brightness(50%);
+}
+
+header, footer {
+  background-color: #343a40; /* Example header/footer color */
+  color: white;
+  grid-column: 1 / -1; /* Spans full width */
+}
+
+.left-side, .right-side {
+  background-color: #565e65; /* Example sidebar color */
+  color: white;
+}
+
+main {
+  background-color: #343a40; /* Example main content color */
+  color: white;
+}
+
+.navbar-toggler-icon {
+  filter: invert(100%); /* Inverts the color, assuming the original is black */
+}
+
+a {
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  filter: brightness(75%)
+}
+
+a:active {
+  filter: brightness(50%)
+}
+body {
+  text-align: center;
+}
+.top-title {
+  font-weight: bold;
+  font-size: x-large;
+  margin: 0px;
+  padding: 0px;
+}
+
+.carousel-caption {
+  padding: 0px;
+  color: white;
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
+
+/*Screen Adjusting Rules */
+@media (max-width: 768px) {
+  .parent {
+    grid-template-columns: 1fr; /* Stack everything on small screens */
+  }
+  
+  .left-side, .right-side {
+    /* Optional: Hide sidebars on smaller screens */
+    display: none;
+  }
+
+  header, footer {
+    /* Ensuring header and footer still span full width */
+    grid-column: 1;
+  }
+}
+
