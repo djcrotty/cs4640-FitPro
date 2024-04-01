@@ -69,9 +69,11 @@ a:hover {
 a:active {
   filter: brightness(50%)
 }
+
 body {
   text-align: center;
 }
+
 .top-title {
   font-weight: bold;
   font-size: x-large;
