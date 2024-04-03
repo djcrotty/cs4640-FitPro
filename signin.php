@@ -70,7 +70,7 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
       <input type="email" id="email" name="email" required>
       <br><br>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
+      <input type="password" id="password" name="password" pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{9,14}$" title="9-14 Characters w/ a capital letter & number." required>
       <br><br>
       <button type="submit" id="sign-in">Sign-in</button>
     <footer>
