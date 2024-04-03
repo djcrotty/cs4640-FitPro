@@ -1,5 +1,28 @@
 <?php
 session_start();
+
+function displayRandomWorkout() {
+  $jsonFilePath = 'json/workouts.json'; // Adjust the path as necessary
+  
+  // Check if the JSON file exists
+  if (!file_exists($jsonFilePath)) {
+      echo "Workout data not found.";
+      return;
+  }
+
+  $jsonData = file_get_contents($jsonFilePath);
+  $workouts = json_decode($jsonData, true);
+
+  // SELECTS RANDOM
+  $randomWorkout = $workouts[array_rand($workouts)];
+
+  //displays in html
+  echo "<div class='left-side'>";
+  echo "<h6>Workout of the Day:</h6>";
+  echo "<h6>" . htmlspecialchars($randomWorkout['name']) . "</h6>";
+  echo "<p>" . htmlspecialchars($randomWorkout['description']) . "</p>";
+  echo "</div>";
+}
 ?>
 
 <!-- https://cs4640.cs.virginia.edu/vpv4ds/cs4640-FitPro/ -->
@@ -51,16 +74,10 @@ session_start();
             </nav>
           </div>
       </header>
-      <div class="left-side">
-         <h6>Workout of the Day:</h6>
-         <h6>Barbell Bench Press</h6>
-         <p>
-            The barbell bench press targets the chest, triceps, and shoulders. 
-            Performed by lowering a barbell to chest level then pressing it upwards, it's key for building upper body muscle and strength. 
-            Essential in both bodybuilding and powerlifting, its technique is crucial for maximizing gains and avoiding injury.
-         </p>
-         
-      </div>
+      <?php
+      // Workout Function
+      displayRandomWorkout();
+      ?>
       <main class="section">
          <h3>Are You Ready to Elevate Your Workouts?</h3>
          <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">

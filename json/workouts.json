@@ -1,0 +1,14 @@
+[
+  {
+      "name": "Barbell Back Squat",
+      "description": "The barbell back squat primarily targets the quadriceps, hamstrings, glutes, lower back, and core. This compound exercise is performed by placing a barbell on the traps, squatting down while keeping the chest up, and standing back up to complete one rep. It's fundamental for building lower body strength and size."
+  },
+  {
+      "name": "Barbell Deadlift",
+      "description": "The barbell deadlift engages multiple muscle groups including the glutes, hamstrings, lower back, traps, and forearms. The exercise involves lifting a loaded barbell off the ground to the level of the hips, then lowering it back to the ground. It's renowned for its effectiveness in building overall body strength."
+  },
+  {
+    "name": "Barbell Bench",
+    "description": "The barbell bench press targets the chest, triceps, and shoulders. Performed by lowering a barbell to chest level then pressing it upwards, it's key for building upper body muscle and strength. Essential in both bodybuilding and powerlifting, its technique is crucial for maximizing gains and avoiding injury."
+  }
+]
