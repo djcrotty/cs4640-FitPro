@@ -39,6 +39,8 @@ header, footer {
 .left-side, .right-side {
   background-color: #565e65; /* Example sidebar color */
   color: white;
+  justify-content: center; /* Center items vertically */
+  align-items: center;
 }
 
 main {
