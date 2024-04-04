@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       header('Location: index.php');
       exit;
     } else {
-      // Failure authentication
-      echo "<p>Invalid email or password.</p>";
+      // Error Message
+      echo "<p style='color:white;'>Invalid email or password.</p>";
     }
 }
 
@@ -79,7 +79,7 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
       <input type="email" id="email" name="email" required>
       <br><br>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
+      <input type="password" id="password" name="password" pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{9,14}$" title="9-14 Characters w/ a capital letter & number." required>
       <br><br>
       <button type="submit" id="sign-in">Sign-in</button>
     <a href="register.php" style="text-decoration: underline; display: block;">Still Need to Register? Go Here</a>
