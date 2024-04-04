@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
    <head>
@@ -29,14 +25,14 @@ session_start();
                <nav>
                <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
                 <!-- User is logged in -->
-                <a href="index.php" class="nav-item">Home</a>
-                <a href="leaderboards.php" class="nav-item">Leaderboard</a>
-                <a href="profile.html" class="nav-item">Profile</a>
-                <a href="workouts.html" class="nav-item">Workouts</a>
-                <a href="logout.php" class="nav-item">Logout</a>
+                <a href="?command=welcome" class="nav-item">Home</a>
+                <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+                <a href="?command=profile" class="nav-item">Profile</a>
+                <a href="?command=workouts" class="nav-item">Workouts</a>
+                <a href="?command=logout" class="nav-item">Logout</a>
             <?php else: ?>
                 <!-- User is not logged in -->
-                <a href="signin.php" class="nav-item">Sign-in</a>
+                <a href="?command=signin" class="nav-item">Sign-in</a>
             <?php endif; ?>
               </nav>
               </div>
@@ -118,15 +114,15 @@ session_start();
       <footer>
          <nav>
          <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
-                <!-- User is logged in -->
-                <a href="index.php" class="nav-item">Home</a>
-                <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-                <a href="profile.html" class="nav-item">Profile</a>
-                <a href="workouts.html" class="nav-item">Workouts</a>
-                <a href="logout.php" class="nav-item">Logout</a>
+            <!-- User is logged in -->
+            <a href="?command=welcome" class="nav-item">Home</a>
+            <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+            <a href="?command=profile" class="nav-item">Profile</a>
+            <a href="?command=workouts" class="nav-item">Workouts</a>
+            <a href="?command=logout" class="nav-item">Logout</a>
             <?php else: ?>
                 <!-- User is not logged in -->
-                <a href="signin.php" class="nav-item">Sign-in</a>
+                <a href="?command=signin" class="nav-item">Sign-in</a>
             <?php endif; ?>
         </nav>
         <p>&copy; 2024 FitPro. All rights reserved.</p>

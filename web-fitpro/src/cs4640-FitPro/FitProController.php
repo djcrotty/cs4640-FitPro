@@ -1,7 +1,6 @@
 <?php
 
-$src_path = "/opt/src/cs4640-FitPro/";
-//$src_path = "/students/vpv4ds/students/vpv4ds/opt/src/cs4640-FitPro/"; //change to this when deploying
+
 
 spl_autoload_register(function ($classname) {
     include($GLOBALS["src_path"]."$classname.php");
@@ -39,18 +38,16 @@ class FitProController {
         // are not trying to login (UPDATE!), then they
         // got here without going through the welcome page, so we
         // should send them back to the welcome page only.
-        if (!isset($_SESSION["name"]) && $command != "login")
+        if (!isset($_SESSION["user_logged_in"]) && $command != "signin" && $command != "register" && $command != "showRegister")
             $command = "welcome";
 
         switch($command) {
             case "signin":
                 $this->signIn();
                 break;
-            case "showregister":
-                $this->showRegister();
-                break;
             case "register":
                 $this->register();
+                break;
             case "leaderboards":
                 $this->showLeaderboards();
                 break;
@@ -74,15 +71,54 @@ class FitProController {
     }
 
     public function signIn() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $db = new Database();
+            $email = trim($_POST['email'] ?? '');
+            $password = trim($_POST['password'] ?? '');
+
+            // checking that the email and password are correct
+            if (!empty($email) && !empty($password) && $db->authenticateUser($email, $password)) {
+            // Success
+            $_SESSION['user_logged_in'] = true;
+            $_SESSION['user_email'] = $email;
+
+            header('Location: ?command=welcome');
+            exit;
+            } else {
+                // Failure authentication
+                echo "<p>Invalid email or password.</p>";
+            }
+        }
+
+        if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
+            header('Location: ?command=welcome');
+            exit;
+        }
         include($GLOBALS["src_path"]."signin.php");
     }
 
-    public function showRegister() {
-        include($GLOBALS["src_path"]."register.php");
-    }
-
     public function register() {
-
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $db = new Database();
+        
+            // Form data
+            $name = filter_input(INPUT_POST, 'name');
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+            $password = filter_input(INPUT_POST, 'password');
+        
+            // PASSWORD HASHING
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        
+            // Add User into the database
+            if ($db->insertUser($name, $email, $passwordHash)) {
+                echo "<p>Registration successful!</p>";
+                header("Location: ?command=signin");
+                exit;
+            }
+        }
+        else {
+            include($GLOBALS["src_path"]."register.php");
+        }
     }
 
     public function showLeaderboards() {

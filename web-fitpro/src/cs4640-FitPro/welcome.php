@@ -51,17 +51,17 @@ function displayRandomWorkout() {
            <div class="pos-f-t">
               <div class="collapse" id="navbarToggleExternalContent">
                 <div class="p-4">
-                <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
-                              <!-- Displays when user has logged in -->
-                              <a href="index.php" class="nav-item">Home</a>
-                              <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-                              <a href="profile.html" class="nav-item">Profile</a>
-                              <a href="workouts.html" class="nav-item">Workouts</a>
-                              <a href="logout.php" class="nav-item">Logout</a>
-                          <?php else: ?>
-                              <!-- Displays when user isnt logged in -->
-                              <a href="signin.php" class="nav-item">Sign-in</a>
-                          <?php endif; ?>
+                    <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
+                        <!-- Displays when user has logged in -->
+                        <a href="?command=welcome" class="nav-item">Home</a>
+                        <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+                        <a href="?command=profile" class="nav-item">Profile</a>
+                        <a href="?command=workouts" class="nav-item">Workouts</a>
+                        <a href="?command=logout" class="nav-item">Logout</a>
+                    <?php else: ?>
+                        <!-- Displays when user isnt logged in -->
+                        <a href="?command=signin" class="nav-item">Sign-in</a>
+                    <?php endif; ?>
                 </div>
               </div>
               <nav class="navbar">
@@ -110,7 +110,7 @@ function displayRandomWorkout() {
               </button>
             </div>
             <?php if (!isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === false): ?>
-              <a href="signin.php">
+              <a href="?command=signin">
                 <button id="sign-in">Sign-in</button>
               </a>
             <?php endif; ?>
@@ -127,20 +127,20 @@ function displayRandomWorkout() {
            <p>- Real Customer</p>
         </div>
         <footer class="section coral">
-           <nav>
-           <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
-                  <!-- User is logged in -->
-                  <a href="index.php" class="nav-item">Home</a>
-                  <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-                  <a href="profile.html" class="nav-item">Profile</a>
-                  <a href="workouts.html" class="nav-item">Workouts</a>
-                  <a href="logout.php" class="nav-item">Logout</a>
-              <?php else: ?>
-                  <!-- User is not logged in -->
-                  <a href="signin.php" class="nav-item">Sign-in</a>
-              <?php endif; ?>
-          </nav>
-          <p>&copy; 2024 FitPro. All rights reserved.</p>
+            <nav>
+                <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
+                    <!-- User is logged in -->
+                    <a href="?command=welcome" class="nav-item">Home</a>
+                    <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+                    <a href="?command=profile" class="nav-item">Profile</a>
+                    <a href="?command=workouts" class="nav-item">Workouts</a>
+                    <a href="?command=logout" class="nav-item">Logout</a>
+                <?php else: ?>
+                    <!-- User is not logged in -->
+                    <a href="?command=signin" class="nav-item">Sign-in</a>
+                <?php endif; ?>
+            </nav>
+            <p>&copy; 2024 FitPro. All rights reserved.</p>
         </footer>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -1,29 +1,3 @@
-<?php
-session_start();
-
-require_once 'Config.php';
-require_once 'Database.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $db = new Database();
-
-    // Form data
-    $name = filter_input(INPUT_POST, 'name');
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password');
-
-    // PASSWORD HASHING
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-    // Add User into the database
-    if ($db->insertUser($name, $email, $passwordHash)) {
-        echo "<p>Registration successful!</p>";
-        header("Location: signin.php");
-        exit;
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
    <head>
@@ -50,10 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="collapse" id="navbarToggleExternalContent">
           <div class="p-4">
            <nav>
-              <a href="index.html" class="nav-item">Home</a>
-              <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-              <a href="profile.html" class="nav-item">Profile</a>
-              <a href="workouts.html" class="nav-item">Workouts</a>
+              <a href="?command=welcome" class="nav-item">Home</a>
+              <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+              <a href="?command=profile" class="nav-item">Profile</a>
+              <a href="?command=workouts" class="nav-item">Workouts</a>
           </nav>
           </div>
         </div>
@@ -67,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </header>
     <h1 class="top-title">Sign-in to FitPro</h1>
-    <form action="register.php" method="post">
+    <form action="?command=register" method="post">
       <label for="name">Name:</label>
       <input type="name" id="name" name="name" required>
       <br><br>
@@ -78,13 +52,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input type="password" id="password" name="password" pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{9,14}$" title="9-14 Characters w/ a capital letter & number." required>
       <br><br>
       <button type="submit" id="sign-in">Register</button>
-    <a href="signin.php" style="text-decoration: underline; display: block;">Already Registered? Sign-in</a>
+    <a href="?command=signin" style="text-decoration: underline; display: block;">Already Registered? Sign-in</a>
     <footer>
       <nav>
-         <a href="index.html" class="nav-item">Home</a>
-         <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-         <a href="profile.html" class="nav-item">Profile</a>
-         <a href="workouts.html" class="nav-item">Workouts</a>
+        <a href="?command=welcome" class="nav-item">Home</a>
+        <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+        <a href="?command=profile" class="nav-item">Profile</a>
+        <a href="?command=workouts" class="nav-item">Workouts</a>
      </nav>
      <p>&copy; 2024 FitPro. All rights reserved.</p>
     </footer>

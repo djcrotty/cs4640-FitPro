@@ -1,36 +1,3 @@
-<?php
-session_start();
-require_once 'Config.php';
-require_once 'Database.php';
-
-// Instantiate the Database class
-$db = new Database(); // This line was missing
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
-    $password = trim($_POST['password'] ?? '');
-
-    // checking that the email and password are correct
-    if (!empty($email) && !empty($password) && $db->authenticateUser($email, $password)) {
-      // Success
-      $_SESSION['user_logged_in'] = true;
-      $_SESSION['user_email'] = $email;
-
-      header('Location: index.php');
-      exit;
-    } else {
-      // Failure authentication
-      echo "<p>Invalid email or password.</p>";
-    }
-}
-
-if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
-    header('Location: index.php');
-    exit;
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
    <head>
@@ -57,15 +24,15 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
         <div class="collapse" id="navbarToggleExternalContent">
           <div class="p-4">
            <nav>
-              <a href="index.html" class="nav-item">Home</a>
-              <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-              <a href="profile.html" class="nav-item">Profile</a>
-              <a href="workouts.html" class="nav-item">Workouts</a>
+              <a href="?command=welcome" class="nav-item">Home</a>
+              <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+              <a href="?command=profile" class="nav-item">Profile</a>
+              <a href="?command=workouts" class="nav-item">Workouts</a>
           </nav>
           </div>
         </div>
         <nav class="navbar">
-           <img src="flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
+           <img src="static/flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
            <p class="top-title">FitPro</p>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -74,7 +41,7 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
       </div>
     </header>
     <h1 class="top-title">Sign-in to FitPro</h1>
-    <form action="signin.php" method="post">
+    <form action="?command=signin" method="post">
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required>
       <br><br>
@@ -82,13 +49,13 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
       <input type="password" id="password" name="password" required>
       <br><br>
       <button type="submit" id="sign-in">Sign-in</button>
-    <a href="register.php" style="text-decoration: underline; display: block;">Still Need to Register? Go Here</a>
+    <a href="?command=register" style="text-decoration: underline; display: block;">Still Need to Register? Go Here</a>
     <footer>
       <nav>
-         <a href="index.html" class="nav-item">Home</a>
-         <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-         <a href="profile.html" class="nav-item">Profile</a>
-         <a href="workouts.html" class="nav-item">Workouts</a>
+      <a href="?command=welcome" class="nav-item">Home</a>
+      <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+      <a href="?command=profile" class="nav-item">Profile</a>
+      <a href="?command=workouts" class="nav-item">Workouts</a>
      </nav>
      <p>&copy; 2024 FitPro. All rights reserved.</p>
     </footer>

@@ -1,6 +1,6 @@
 <?php
-require_once 'Config.php';
-require_once 'Database.php';
+require_once '/opt/src/cs4640-FitPro/Config.php';
+require_once '/opt/src/cs4640-FitPro/Database.php';
 
 $db = new Database();
 

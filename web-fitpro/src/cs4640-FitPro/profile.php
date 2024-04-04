@@ -32,10 +32,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="exCollapsingNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="leaderboards.html" class="nav-link">Leaderboard</a></li>
-                        <li class="nav-item"><a href="profile.html" class="nav-link">Profile</a></li>
-                        <li class="nav-item"><a href="workouts.html" class="nav-link">Workouts</a></li>
+                        <li class="nav-item"><a href="?command=welcome" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="?command=leaderboards" class="nav-link">Leaderboard</a></li>
+                        <li class="nav-item"><a href="?command=profile" class="nav-link">Profile</a></li>
+                        <li class="nav-item"><a href="?command=workouts" class="nav-link">Workouts</a></li>
                     </ul>
                     <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                         <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
@@ -156,20 +156,20 @@
                 <h2 class="m-3">Friends</h2>
                 <ul>
                     <li id="friend-1">
-                        <a href="./profile.html">Example Friend 1</a>
-                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
+                        <a href="?command=profile">Example Friend 1</a>
+                        <button formaction="?command=profile" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-2">
-                        <a href="./profile.html">Example Friend 2</a>
-                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
+                        <a href="?command=profile">Example Friend 2</a>
+                        <button formaction="?command=profile" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-3">
-                        <a href="./profile.html">Example Friend 3</a>
-                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
+                        <a href="?command=profile">Example Friend 3</a>
+                        <button formaction="?command=profile" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-4">
-                        <a href="./profile.html">Example Friend 4</a>
-                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
+                        <a href="?command=profile">Example Friend 4</a>
+                        <button formaction="?command=profile" class="border btn btn-light">Profile</button>
                     </li>
                 </ul>
             </div>
@@ -177,10 +177,10 @@
         <footer>
             <nav>
                 <ul style="list-style: none; padding: 0; text-align: center;">
-                    <li style="display: inline; margin-right: 20px;"><a href="index.html" style="text-decoration: none; color: white;">Home</a></li>
-                    <li style="display: inline; margin-right: 20px;"><a href="leaderboard.html" style="text-decoration: none; color: white;">Leaderboard</a></li>
-                    <li style="display: inline; margin-right: 20px;"><a href="profile.html" style="text-decoration: none; color: white;">Profile</a></li>
-                    <li style="display: inline;"><a href="workouts.html" style="text-decoration: none; color: white;">Workouts</a></li>
+                    <li style="display: inline; margin-right: 20px;"><a href="?command=welcome" style="text-decoration: none; color: white;">Home</a></li>
+                    <li style="display: inline; margin-right: 20px;"><a href="?command=leaderboard" style="text-decoration: none; color: white;">Leaderboard</a></li>
+                    <li style="display: inline; margin-right: 20px;"><a href="?command=profile" style="text-decoration: none; color: white;">Profile</a></li>
+                    <li style="display: inline;"><a href="?command=workouts" style="text-decoration: none; color: white;">Workouts</a></li>
                 </ul>
             </nav>
             <p>&copy; 2024 FitPro. All rights reserved.</p>
