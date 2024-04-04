@@ -57,8 +57,8 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
         <div class="collapse" id="navbarToggleExternalContent">
           <div class="p-4">
            <nav>
-              <a href="index.html" class="nav-item">Home</a>
-              <a href="leaderboards.html" class="nav-item">Leaderboard</a>
+              <a href="index.php" class="nav-item">Home</a>
+              <a href="leaderboards.php" class="nav-item">Leaderboard</a>
               <a href="profile.html" class="nav-item">Profile</a>
               <a href="workouts.html" class="nav-item">Workouts</a>
           </nav>
@@ -85,8 +85,8 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
     <a href="register.php" style="text-decoration: underline; display: block;">Still Need to Register? Go Here</a>
     <footer>
       <nav>
-         <a href="index.html" class="nav-item">Home</a>
-         <a href="leaderboards.html" class="nav-item">Leaderboard</a>
+         <a href="index.php" class="nav-item">Home</a>
+         <a href="leaderboards.php" class="nav-item">Leaderboard</a>
          <a href="profile.html" class="nav-item">Profile</a>
          <a href="workouts.html" class="nav-item">Workouts</a>
      </nav>

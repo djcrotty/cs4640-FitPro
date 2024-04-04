@@ -72,34 +72,28 @@ session_start();
          <thead>
             <tr>
                <th>Username</th>
-               <th>Reps</th>
                <th>Weight</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>User1</td>
-               <td>10</td>
                <td>280lbs</td>
             </tr>
             <tr>
                <td>User2</td>
-               <td>8</td>
                <td>200lbs</td>
             </tr>
             <tr>
                <td>User3</td>
-               <td>12</td>
                <td>180lbs</td>
             </tr>
             <tr>
                <td>User4</td>
-               <td>15</td>
                <td>160lbs</td>
             </tr>
             <tr>
                <td>User5</td>
-               <td>9</td>
                <td>105lbs</td>
             </tr>
          </tbody>
@@ -120,7 +114,7 @@ session_start();
          <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
                 <!-- User is logged in -->
                 <a href="index.php" class="nav-item">Home</a>
-                <a href="leaderboards.html" class="nav-item">Leaderboard</a>
+                <a href="leaderboards.php" class="nav-item">Leaderboard</a>
                 <a href="profile.html" class="nav-item">Profile</a>
                 <a href="workouts.html" class="nav-item">Workouts</a>
                 <a href="logout.php" class="nav-item">Logout</a>
