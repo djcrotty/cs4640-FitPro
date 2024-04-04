@@ -1,18 +1,26 @@
 <?php
 session_start();
+require_once 'Config.php';
+require_once 'Database.php';
 
-// Check if form was submitted
+// Instantiate the Database class
+$db = new Database(); // This line was missing
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $password = trim($_POST['password'] ?? '');
 
-    if (!empty($email) && !empty($password)) {
-        $_SESSION['user_logged_in'] = true;
-        $_SESSION['user_email'] = $email;
+    // checking that the email and password are correct
+    if (!empty($email) && !empty($password) && $db->authenticateUser($email, $password)) {
+      // Success
+      $_SESSION['user_logged_in'] = true;
+      $_SESSION['user_email'] = $email;
 
-        // Redirect to a welcome page upon successful login
-        header('Location: index.php');
-        exit;
+      header('Location: index.php');
+      exit;
+    } else {
+      // Failure authentication
+      echo "<p>Invalid email or password.</p>";
     }
 }
 
@@ -21,6 +29,7 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
@@ -36,7 +45,7 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
       <meta property="og:type" content="website">
       <meta property="og:image" content="">
       <meta property="og:url" content="https://cs4640.cs.virginia.edu/vpv4ds/cs4640-FitPro/login.html">
-      <meta property="og:description" content="Index base page for FitPro, a way for gymgoers to track and compete">
+      <meta property="og:description" content="Sign-in Page - FitPro">
       <meta property="og:site_name" content="FitPro - Signin">
       <title>FitPro - Signin</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -70,9 +79,10 @@ if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) 
       <input type="email" id="email" name="email" required>
       <br><br>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{9,14}$" title="9-14 Characters w/ a capital letter & number." required>
+      <input type="password" id="password" name="password" required>
       <br><br>
       <button type="submit" id="sign-in">Sign-in</button>
+    <a href="register.php" style="text-decoration: underline; display: block;">Still Need to Register? Go Here</a>
     <footer>
       <nav>
          <a href="index.html" class="nav-item">Home</a>
