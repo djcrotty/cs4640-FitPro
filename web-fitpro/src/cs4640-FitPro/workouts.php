@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
             <div class="container">
                 <a class="navbar-brand" href="?command=welcome">
-                    <img src="flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
+                    <img src="static/flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                     &#9776;
@@ -32,9 +32,9 @@
                 <div class="collapse navbar-collapse" id="exCollapsingNavbar">
                     <ul class="nav navbar-nav">
                         <li class="nav-item"><a href="?command=welcome" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="?comamnd=leaderboards" class="nav-link">Leaderboard</a></li>
+                        <li class="nav-item"><a href="?command=leaderboards" class="nav-link">Leaderboard</a></li>
                         <li class="nav-item"><a href="?command=profile" class="nav-link">Profile</a></li>
-                        <li class="nav-item"><a href="?comamnd=workouts" class="nav-link">Workouts</a></li>
+                        <li class="nav-item"><a href="?command=workouts" class="nav-link">Workouts</a></li>
                     </ul>
                     <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                         <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>

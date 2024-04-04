@@ -38,7 +38,7 @@
               </div>
             </div>
             <nav class="navbar">
-               <img src="flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
+               <img src="static/flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
                <p class="top-title">FitPro</p>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

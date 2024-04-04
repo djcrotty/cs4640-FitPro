@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
+                    <img src="static/flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                     &#9776;
