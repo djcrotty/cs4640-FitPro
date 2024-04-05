@@ -63,6 +63,21 @@ class Database {
         return $this->query("SELECT name,id FROM users WHERE email = $email;");
     }
 
+    public function insertWeight($userId, $exerciseId, $weight) {
+        $query = "INSERT INTO user_exercises (user_id, exercise_id, weight, date_performed) VALUES ($1, $2, $3, CURRENT_DATE) ON CONFLICT (user_id, exercise_id) DO UPDATE SET weight = EXCLUDED.weight";
+    
+        $result = pg_prepare($this->dbConnection, "insert_weight", $query);
+    
+        $result = pg_execute($this->dbConnection, "insert_weight", array($userId, $exerciseId, $weight));
+        if (!$result) {
+            echo "Execute failed: " . pg_last_error($this->dbConnection);
+            return false;
+        }
+    
+        return true;
+    }
+    
+
 
 }
 ?>
