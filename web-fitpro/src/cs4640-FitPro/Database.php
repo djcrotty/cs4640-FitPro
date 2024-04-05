@@ -97,5 +97,17 @@ class Database {
         return $result;
     }
 
+    public function insertWeight($userId, $exerciseId, $weight) {
+        $query = "UPDATE user_exercises SET weight = $weight WHERE user_id = $user_id AND exercise_id = $exerciseId";
+    
+        $result = $this->query($query);
+        if (!$result) {
+            echo "Execute failed: " . pg_last_error($this->dbConnection);
+            return false;
+        }
+    
+        return true;
+    }
+
 }
 ?>

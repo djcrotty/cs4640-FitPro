@@ -1,3 +1,14 @@
+<?php 
+if (isset($_POST['submit_weight'])) {
+   $exerciseId = $_POST['exercise_id'];
+   $weight = $_POST['weight']; 
+   $userId = $_SESSION['user_id']; 
+
+   $db->insertWeight($userId, $exerciseId, $weight);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
    <head>
@@ -68,48 +79,40 @@
          <thead>
             <tr>
                <th>Username</th>
-               <th>Reps</th>
                <th>Weight</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>User1</td>
-               <td>10</td>
                <td>280lbs</td>
             </tr>
             <tr>
                <td>User2</td>
-               <td>8</td>
                <td>200lbs</td>
             </tr>
             <tr>
                <td>User3</td>
-               <td>12</td>
                <td>180lbs</td>
             </tr>
             <tr>
                <td>User4</td>
-               <td>15</td>
                <td>160lbs</td>
             </tr>
             <tr>
                <td>User5</td>
-               <td>9</td>
                <td>105lbs</td>
             </tr>
          </tbody>
       </table>
-      <form>
-         <label for="new-workout-dropdown">Select Workout:</label>
-         <select id="new-workout-dropdown" name="newWorkouts">
-            <option value="squats">Squats</option>
-            <option value="benchpress">Bench Press</option>
-            <option value="deadlift">Deadlift</option>
-         </select>
-         <label for="weight-input">Enter Weight:</label>
-         <input type="number" id="weight-input" name="weight" placeholder="Weight (lbs)" min="0">
-         <button type="submit" id="submit">Submit</button>
+      <form action="leaderboard.php" method="post">
+      <select name="exercise_id">
+         <option value="1">Squats</option>
+         <option value="2">Bench Press</option>
+         <option value="3">Deadlift</option>
+      </select>
+      <input type="number" name="weight" placeholder="Weight (lbs)" required>
+      <input type="submit" name="submit_weight" value="Submit Weight">
       </form>
       <footer>
          <nav>
