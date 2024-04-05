@@ -1,7 +1,4 @@
 <?php
-
-
-
 spl_autoload_register(function ($classname) {
     include($GLOBALS["src_path"]."$classname.php");
 });
@@ -60,7 +57,7 @@ class FitProController {
             case "logout":
                 $this->logout();
                 // no break; logout will also show the welcome page.
-            default: //home page / welcome page
+            default: //home page/welcome page
                 $this->showWelcome();
                 break;
         }
@@ -71,6 +68,7 @@ class FitProController {
     }
 
     public function signIn() {
+        $message = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $db = new Database();
             $email = trim($_POST['email'] ?? '');
@@ -78,15 +76,20 @@ class FitProController {
 
             // checking that the email and password are correct
             if (!empty($email) && !empty($password) && $db->authenticateUser($email, $password)) {
-            // Success
-            $_SESSION['user_logged_in'] = true;
-            $_SESSION['user_email'] = $email;
+                // Success
+                $_SESSION['user_logged_in'] = true;
+                $_SESSION['user_email'] = $email;
+                $res = $db->getUserInfo($email);
+                $_SESSION["user_id"] = $res[1];
+                $_SESSION["name"] = $res[0];
 
-            header('Location: ?command=welcome');
-            exit;
+                header('Location: ?command=welcome');
+                exit;
             } else {
                 // Failure authentication
-                echo "<p>Invalid email or password.</p>";
+                $message = "<div class=\"alert alert-danger d-inline-block\" role=\"alert\">
+                Invalid email or password.
+                </div>";
             }
         }
 
@@ -112,6 +115,7 @@ class FitProController {
             // Add User into the database
             if ($db->insertUser($name, $email, $passwordHash)) {
                 echo "<p>Registration successful!</p>";
+
                 header("Location: ?command=signin");
                 exit;
             }
@@ -130,6 +134,12 @@ class FitProController {
     }
 
     public function showProfile() {
+
+        $name = $_SESSION["name"];
+        $email = $_SESSION["email"];
+        $user_id = $_SESSION["id"];
+
+
         include($GLOBALS["src_path"]."profile.php");
     }
 

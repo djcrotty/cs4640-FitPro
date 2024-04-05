@@ -8,6 +8,10 @@ pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS user_seq;");
 pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS exercise_seq;");
 pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS user_exercise_seq;");
 
+pg_query($db->getConnection(), "DROP TABLE users CASCADE;");
+pg_query($db->getConnection(), "DROP TABLE exercises CASCADE;");
+pg_query($db->getConnection(), "DROP TABLE user_exercises CASCADE;");
+
 // users table
 $createUsersTableSQL = <<<SQL
 CREATE TABLE IF NOT EXISTS users (
@@ -23,7 +27,7 @@ pg_query($db->getConnection(), $createUsersTableSQL);
 $createExercisesTableSQL = <<<SQL
 CREATE TABLE IF NOT EXISTS exercises (
     id INT PRIMARY KEY DEFAULT nextval('exercise_seq'),
-    name VARCHAR(255) NOT NULL UNIQUE
+    name VARCHAR(255) NOT NULL UNIQUE,
 );
 SQL;
 pg_query($db->getConnection(), $createExercisesTableSQL);
@@ -44,8 +48,10 @@ CREATE TABLE IF NOT EXISTS user_exercises (
     exercise_id INT,
     sets INT,
     reps INT,
+    total_reps INT,
     weight INT,
     date_performed DATE,
+    workout INT,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (exercise_id) REFERENCES exercises(id)
 );

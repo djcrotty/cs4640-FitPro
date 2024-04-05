@@ -49,6 +49,8 @@
       <input type="password" id="password" name="password" required>
       <br><br>
       <button type="submit" id="sign-in">Sign-in</button>
+    </form>
+    <?php echo $message ?>
     <a href="?command=register" style="text-decoration: underline; display: block;">Still Need to Register? Go Here</a>
     <footer>
       <nav>

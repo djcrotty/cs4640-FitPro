@@ -1,41 +1,52 @@
 <?php
 class Database {
-  private $dbConnection;
+    private $dbConnection;
 
-  public function __construct() {
-      // Database connection
-      $this->dbConnection = pg_connect("host=" . Config::$db['host'] . " port=" . Config::$db['port'] . " dbname=" . Config::$db['database'] . " user=" . Config::$db['user'] . " password=" . Config::$db['password']);
-      if (!$this->dbConnection) {
-          die("Connection failed: " . pg_last_error());
-      }
-  }
+    public function __construct() {
+        // Database connection
+        $this->dbConnection = pg_connect("host=" . Config::$db['host'] . " port=" . Config::$db['port'] . " dbname=" . Config::$db['database'] . " user=" . Config::$db['user'] . " password=" . Config::$db['password']);
+        if (!$this->dbConnection) {
+            die("Connection failed: " . pg_last_error());
+        }
+    }
 
-  public function insertUser($name, $email, $passwordHash) {
-      $stmtName = "insert_user";
-      $query = "INSERT INTO users (name, email, password_hash) VALUES ($1, $2, $3)";
+    public function query($query, ...$params) {
+        $res = pg_query_params($this->dbConnection, $query, $params);
 
-      $prepareResult = pg_prepare($this->dbConnection, $stmtName, $query);
+        if ($res === false) {
+            echo pg_last_error($this->dbConnection);
+            return false;
+        }
 
-      if ($prepareResult === false) {
-          echo "Error preparing the INSERT statement: " . pg_last_error($this->dbConnection);
-          return false;
-      }
+        return pg_fetch_all($res);
+    }
 
-      $executeResult = pg_execute($this->dbConnection, $stmtName, array($name, $email, $passwordHash));
+    public function insertUser($name, $email, $passwordHash) {
+        $stmtName = "insert_user";
+        $query = "INSERT INTO users (name, email, password_hash) VALUES ($1, $2, $3)";
 
-      if ($executeResult === false) {
-          echo "Error executing the INSERT statement: " . pg_last_error($this->dbConnection);
-          return false;
-      }
+        $prepareResult = pg_prepare($this->dbConnection, $stmtName, $query);
 
-      return true; 
-  }
+        if ($prepareResult === false) {
+            echo "Error preparing the INSERT statement: " . pg_last_error($this->dbConnection);
+            return false;
+        }
 
-  public function getConnection() {
+        $executeResult = pg_execute($this->dbConnection, $stmtName, array($name, $email, $passwordHash));
+
+        if ($executeResult === false) {
+            echo "Error executing the INSERT statement: " . pg_last_error($this->dbConnection);
+            return false;
+        }
+
+        return true; 
+    }
+
+    public function getConnection() {
     return $this->dbConnection;
-  }
+    }
 
-  public function authenticateUser($email, $password) {
+    public function authenticateUser($email, $password) {
     $result = pg_prepare($this->dbConnection, "fetch_user", "SELECT * FROM users WHERE email = $1 LIMIT 1");
     $result = pg_execute($this->dbConnection, "fetch_user", array($email));
 
@@ -46,6 +57,12 @@ class Database {
         }
     }
     return false;
-}
+    }
+
+    public function getUserInfo($email) {
+        return $this->query("SELECT name,id FROM users WHERE email = $email;");
+    }
+
+
 }
 ?>
