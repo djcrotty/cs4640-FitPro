@@ -48,11 +48,20 @@ class FitProController {
             case "leaderboards":
                 $this->showLeaderboards();
                 break;
+            case "leaderboards-json":
+                $this->leaderboardsjson();
+                break;
             case "workouts":
                 $this->showWorkouts();
                 break;
             case "profile":
                 $this->showProfile();
+                break;
+            case "executecreateworkout":
+                $this->createWorkout();
+                break;
+            case "createworkout":
+                $this->showcreateWorkout();
                 break;
             case "logout":
                 $this->logout();
@@ -80,8 +89,9 @@ class FitProController {
                 $_SESSION['user_logged_in'] = true;
                 $_SESSION['user_email'] = $email;
                 $res = $db->getUserInfo($email);
-                $_SESSION["user_id"] = $res[1];
-                $_SESSION["name"] = $res[0];
+                echo var_dump($res);
+                $_SESSION["user_id"] = $res["id"];
+                $_SESSION["user_name"] = $res["name"];
 
                 header('Location: ?command=welcome');
                 exit;
@@ -130,16 +140,46 @@ class FitProController {
     }
     
     public function showWorkouts() {
+        $db = new Database();
+        //get workout names
+        $workouts = $db->query("SELECT DISTINCT workout_name, user_id, workout FROM user_exercises");
+        //get user names from workouts
+        $usernames = [];
+        foreach ($workouts as $workout) {
+            $res = $db->getUserNameEmail($workout["user_id"]);
+            $usernames[$res[0]["name"]] = [$workout["workout_name"], $workout["user_id"]];
+        }
+        $email = $_SESSION["user_email"];
+        $name = $_SESSION["user_name"];
+        $user_id = $_SESSION["user_id"];
+        $total_workouts = $db->getUserInfo($email)["workouts"];
+        $workouts = []; //2D array of workouts with a list of exercises
+        for ($i = 1; $i <= $total_workouts; $i++) {
+            $workouts[] = $db->getWorkout($user_id, $i);
+        }
+        $exercises = $db->getExercises();
         include($GLOBALS["src_path"]."workouts.php");
     }
 
     public function showProfile() {
+        $email = $_SESSION["user_email"];
+        $name = $_SESSION["user_name"];
+        $user_id = $_SESSION["user_id"];
+        $current_user_id = $_SESSION["user_id"];
 
-        $name = $_SESSION["name"];
-        $email = $_SESSION["email"];
-        $user_id = $_SESSION["id"];
-
-
+        $db = new Database();
+        if (isset($_GET["id"]) && !empty($_GET["id"])) { //another user
+            $res = $db->getUserNameEmail($_GET["id"]);
+            $user_id = $_GET["id"];
+            $name = $res[0]["name"];
+            $email = $res[0]["email"];
+        }
+        $total_workouts = $db->getUserInfo($email)["workouts"];
+        $workouts = []; //2D array of workouts with a list of exercises
+        for ($i = 1; $i <= $total_workouts; $i++) {
+            $workouts[] = $db->getWorkout($user_id, $i);
+        }
+        $exercises = $db->getExercises();
         include($GLOBALS["src_path"]."profile.php");
     }
 
@@ -148,4 +188,23 @@ class FitProController {
         session_start();
     }
 
+    public function showcreateWorkout() {
+        //get all the exercises
+        $db = new Database();
+        $exercises = $db->getExercises();
+        include($GLOBALS["src_path"]."createworkout.php");
+    }
+
+    public function createWorkout() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $db = new Database();
+            $total_workouts = $db->getUserInfo($_SESSION["user_email"])["workouts"] + 1;
+            $db->insertExercise($_SESSION["user_id"], $_POST["exercise1"], $_POST["set1"], $_POST["rep1"], $_POST["rest1"], $_POST["weight1"], $total_workouts, $_POST["workout_name"]);
+            $db->insertExercise($_SESSION["user_id"], $_POST["exercise2"], $_POST["set2"], $_POST["rep2"], $_POST["rest2"], $_POST["weight2"], $total_workouts, $_POST["workout_name"]);
+            $db->insertExercise($_SESSION["user_id"], $_POST["exercise3"], $_POST["set3"], $_POST["rep3"], $_POST["rest3"], $_POST["weight3"], $total_workouts, $_POST["workout_name"]);
+        }
+        header("Location: ?command=workouts");
+    }
+
+    
 }

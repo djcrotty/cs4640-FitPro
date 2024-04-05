@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY DEFAULT nextval('user_seq'),
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL
+    password_hash VARCHAR(255) NOT NULL,
+    workouts INT
 );
 SQL;
 pg_query($db->getConnection(), $createUsersTableSQL);
@@ -27,7 +28,7 @@ pg_query($db->getConnection(), $createUsersTableSQL);
 $createExercisesTableSQL = <<<SQL
 CREATE TABLE IF NOT EXISTS exercises (
     id INT PRIMARY KEY DEFAULT nextval('exercise_seq'),
-    name VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL UNIQUE
 );
 SQL;
 pg_query($db->getConnection(), $createExercisesTableSQL);
@@ -48,10 +49,12 @@ CREATE TABLE IF NOT EXISTS user_exercises (
     exercise_id INT,
     sets INT,
     reps INT,
+    rest INT,
     total_reps INT,
     weight INT,
     date_performed DATE,
     workout INT,
+    workout_name VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (exercise_id) REFERENCES exercises(id)
 );

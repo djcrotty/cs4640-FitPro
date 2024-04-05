@@ -85,26 +85,13 @@
                             <th scope="col">User</th>
                             <th scope="col">Workout</th>
                         </tr>
+                        <?php foreach ($usernames as $name=>$workout) { ?>
                         <tr id="new-workout-1">
                             <td>100</td>
-                            <td>Example User 1</td>
-                            <td><a>Best Chest Workout!</a></td>
+                            <td><?= $name ?></td>
+                            <td><a href="?command=profile&id=<?= $workout[1]?>"> <?= $workout[0] ?></a></td>
                         </tr>
-                        <tr id="new-workout-2">
-                            <td>85</td>
-                            <td>Example User 2</td>
-                            <td><a>Leg Day is Everyday</a></td>
-                        </tr>
-                        <tr id="new-workout-3">
-                            <td>10</td>
-                            <td>Example User 3</td>
-                            <td><a>Fun Back Workout</a></td>
-                        </tr>
-                        <tr id="new-workout-4">
-                            <td>1</td>
-                            <td>Example User 4</td>
-                            <td><a>Example Users Workout</a></td>
-                        </tr>
+                        <?php } ?>
                     </table>
                 </div>
             </div>
@@ -120,74 +107,71 @@
                     <li><p>Sunday- Chest </p><button class="border btn btn-light">Edit</button></li>
                 </ul>
             </div>
-            <div class="p-3 m-3 bg-secondary" id="workouts-container">
-                <div class="d-flex flex-row align-items-center justify-content-between" id="workouts-selector-progress">
-                    <div>
+            <?php foreach ($workouts as $workout) { ?>
+                <div class="p-3 m-3 bg-secondary" id="workouts-container">
+                    <div class="d-flex flex-row align-items-center justify-content-between" id="workouts-selector-progress">
                         <div>
-                            <h4>
-                                Progress
-                            </h4>
-                            <div id="progress-bar">
-                                <p>
-                                    75% Complete
-                                </p>
+                            <div>
+                                <h4>
+                                    Progress in <?=$workout[0]["workout_name"]?>
+                                </h4>
+                                <div id="progress-bar">
+                                    <p>
+                                        75% Complete
+                                    </p>
+                                </div>
                             </div>
+                            <!-- <div class="btn-group" role="group" id="workout-selector">
+                                <button type="button" class="btn btn-light">Chest</button>
+                                <button type="button" class="btn btn-light">Legs</button>
+                                <button type="button" class="btn btn-light">Push</button>
+                                <button type="button" class="btn btn-light">Pull</button>
+                              </div> -->
                         </div>
-                        <div class="btn-group" role="group" id="workout-selector">
-                            <button type="button" class="btn btn-light">Chest</button>
-                            <button type="button" class="btn btn-light">Legs</button>
-                            <button type="button" class="btn btn-light">Push</button>
-                            <button type="button" class="btn btn-light">Pull</button>
-                          </div>
+                        <a href="?command=createworkout">
+                        <button class="border btn btn-light h-25">
+                            Create New Workout +
+                        </button>
+                        </a>
                     </div>
-                    <button formaction="workouts.html" class="border btn btn-light h-25">
-                        Create New Workout +
-                    </button>
+                    <div id="table">
+                        <table class="table table-striped table-dark">
+                            <tr>
+                                <th scope="col">Position</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Completion</th>
+                                <th scope="col">Sets</th>
+                                <th scope="col">Reps</th>
+                                <th scope="col">Rest(seconds)</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><?= $exercises[$workout[0]["exercise_id"]]?></td>
+                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
+                                <td><?=$workout[0]["sets"] ?></td>
+                                <td><?=$workout[0]["reps"] ?></td>
+                                <td><?=$workout[0]["rest"] ?></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><?= $exercises[$workout[1]["exercise_id"]]?></td>
+                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
+                                <td><?=$workout[1]["sets"] ?></td>
+                                <td><?=$workout[1]["reps"] ?></td>
+                                <td><?=$workout[1]["rest"] ?></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><?= $exercises[$workout[2]["exercise_id"]]?></td>
+                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
+                                <td><?=$workout[2]["sets"] ?></td>
+                                <td><?=$workout[2]["reps"] ?></td>
+                                <td><?=$workout[2]["rest"] ?></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <div id="table">
-                    <table class="table table-striped table-dark">
-                        <tr>
-                            <th scope="col">Position</th>
-                            <th scope="col">Exercise</th>
-                            <th scope="col">Completion</th>
-                            <th scope="col">Sets</th>
-                            <th scope="col">Reps</th>
-                            <th scope="col">Rest(seconds)</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bench Press</td>
-                            <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                            <td>3</td>
-                            <td>8</td>
-                            <td>90</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Bicep Curls</td>
-                            <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                            <td>3</td>
-                            <td>20</td>
-                            <td>60</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Push Ups</td>
-                            <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                            <td>3</td>
-                            <td>20</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Shoulder Press</td>
-                            <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                            <td>2</td>
-                            <td>12</td>
-                            <td>45</td>
-                        </tr>
-                    </table>
-                </div>
+                <?php } ?>
             </div>
         </div>
         <footer>
