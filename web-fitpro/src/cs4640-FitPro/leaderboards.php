@@ -105,7 +105,6 @@
       </form>
       <footer>
          <nav>
-         <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
             <!-- User is logged in -->
             <a href="?command=welcome" class="nav-item">Home</a>
             <a href="?command=leaderboards" class="nav-item">Leaderboard</a>

@@ -46,7 +46,7 @@
       <input type="email" id="email" name="email" required>
       <br><br>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
+      <input type="password" id="password" name="password" pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{9,14}$" title="9-14 Characters w/ a capital letter & number." required>
       <br><br>
       <button type="submit" id="sign-in">Sign-in</button>
     </form>
@@ -54,10 +54,10 @@
     <a href="?command=register" style="text-decoration: underline; display: block;">Still Need to Register? Go Here</a>
     <footer>
       <nav>
-      <a href="?command=welcome" class="nav-item">Home</a>
-      <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
-      <a href="?command=profile" class="nav-item">Profile</a>
-      <a href="?command=workouts" class="nav-item">Workouts</a>
+        <a href="?command=welcome" class="nav-item">Home</a>
+        <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+        <a href="?command=profile" class="nav-item">Profile</a>
+        <a href="?command=workouts" class="nav-item">Workouts</a>
      </nav>
      <p>&copy; 2024 FitPro. All rights reserved.</p>
     </footer>
