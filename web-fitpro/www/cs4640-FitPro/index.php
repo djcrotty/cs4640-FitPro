@@ -11,7 +11,6 @@ $src_path = "/opt/src/cs4640-FitPro/";
 // is our src/ directory in Docker.
 spl_autoload_register(function ($classname) {
         include ($GLOBALS["src_path"]."$classname.php");
-        //include "/students/vpv4ds/students/vpv4ds/opt/src/connections/$classname.php"; //change to this line when deploying
 });
 
 

@@ -109,5 +109,25 @@ class Database {
         return true;
     }
 
+    public function deleteUser($email) {
+        $stmtName = "delete_user";
+        $query = "DELETE FROM users WHERE email = $1";
+      
+        $prepareResult = pg_prepare($this->dbConnection, $stmtName, $query);
+      
+        if ($prepareResult === false) {
+            echo "Error preparing the DELETE statement: " . pg_last_error($this->dbConnection);
+            return false;
+        }
+      
+        $executeResult = pg_execute($this->dbConnection, $stmtName, array($email));
+      
+        if ($executeResult === false) {
+            echo "Error executing the DELETE statement: " . pg_last_error($this->dbConnection);
+            return false;
+        }
+      
+        return true;
+      }
 }
 ?>
