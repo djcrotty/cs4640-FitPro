@@ -97,7 +97,7 @@ class Database {
         return $result;
     }
 
-    public function insertWeight($userId, $exerciseId, $weight) {
+    public function insertWeight($user_id, $exerciseId, $weight) {
         $query = "UPDATE user_exercises SET weight = $weight WHERE user_id = $user_id AND exercise_id = $exerciseId";
     
         $result = $this->query($query);

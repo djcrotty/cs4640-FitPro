@@ -109,7 +109,7 @@ function displayRandomWorkout() {
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-            <?php if (!isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === false): ?>
+            <?php if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] === false): ?>
               <a href="?command=signin">
                 <button id="sign-in">Sign-in</button>
               </a>

@@ -82,7 +82,15 @@
                         <img src="./static/calendar_placeholder.PNG" alt="Calendar Placeholder">
                     </div>
                 </div>
-                <?php foreach ($workouts as $workout) { ?>
+                <?php if (empty($workouts)) { ?>
+                    <a href="?command=createworkout">
+                    <button class="border btn btn-light">
+                        Create New Workout +
+                    </button>
+                    </a>
+                <?php }
+                    foreach ($workouts as $workout) { 
+                ?>
                 <div class="p-3 m-3 bg-secondary" id="workouts-container">
                     <div class="d-flex flex-row align-items-center justify-content-between" id="workouts-selector-progress">
                         <div>

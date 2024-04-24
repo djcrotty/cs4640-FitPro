@@ -136,6 +136,13 @@ class FitProController {
     }
 
     public function showLeaderboards() {
+        if (isset($_POST['submit_weight'])) {
+            $exerciseId = $_POST['exercise_id'];
+            $weight = $_POST['weight']; 
+            $userId = $_SESSION["user_id"]; 
+            $db = new Database();
+            $db->insertWeight($userId, $exerciseId, $weight);
+         }
         include($GLOBALS["src_path"]."leaderboards.php");
     }
     
@@ -189,6 +196,10 @@ class FitProController {
     }
 
     public function showcreateWorkout() {
+        $message = "";
+        if (isset($_GET["message"])) {
+            $message = $_GET["message"];
+        }
         //get all the exercises
         $db = new Database();
         $exercises = $db->getExercises();
@@ -197,14 +208,35 @@ class FitProController {
 
     public function createWorkout() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $db = new Database();
-            $total_workouts = $db->getUserInfo($_SESSION["user_email"])["workouts"] + 1;
-            $db->insertExercise($_SESSION["user_id"], $_POST["exercise1"], $_POST["set1"], $_POST["rep1"], $_POST["rest1"], $_POST["weight1"], $total_workouts, $_POST["workout_name"]);
-            $db->insertExercise($_SESSION["user_id"], $_POST["exercise2"], $_POST["set2"], $_POST["rep2"], $_POST["rest2"], $_POST["weight2"], $total_workouts, $_POST["workout_name"]);
-            $db->insertExercise($_SESSION["user_id"], $_POST["exercise3"], $_POST["set3"], $_POST["rep3"], $_POST["rest3"], $_POST["weight3"], $total_workouts, $_POST["workout_name"]);
+            //validate user input
+            $matches = [];
+            if(preg_match('/^([A-Za-z0-9_]+)$/', $_POST["workout_name"], $matches)) { 
+                $db = new Database();
+                $total_workouts = $db->getUserInfo($_SESSION["user_email"])["workouts"] + 1;
+                $db->insertExercise($_SESSION["user_id"], $_POST["exercise1"], $_POST["set1"], $_POST["rep1"], $_POST["rest1"], $_POST["weight1"], $total_workouts, $_POST["workout_name"]);
+                $db->insertExercise($_SESSION["user_id"], $_POST["exercise2"], $_POST["set2"], $_POST["rep2"], $_POST["rest2"], $_POST["weight2"], $total_workouts, $_POST["workout_name"]);
+                $db->insertExercise($_SESSION["user_id"], $_POST["exercise3"], $_POST["set3"], $_POST["rep3"], $_POST["rest3"], $_POST["weight3"], $total_workouts, $_POST["workout_name"]);
+            }
+            else {
+                header("Location: ?command=createworkout&message=Exercise names must be Alphanumeric or Numerical");
+            }
         }
         header("Location: ?command=workouts");
     }
 
+    public function leaderboardsjson() {
+        $data = [];
+        if (isset($_GET["exercise_id"]) && !empty($_GET["exercise_id"])){
+            $db = new Database();
+            $exercise_id = $_GET["exercise_id"];
+            $data = $db->query("SELECT user_id, weight, date_performed from user_exercises WHERE exercise_id = $exercise_id ORDER BY weight ASC");
+            
+            header('Content-type: application/json');
+            echo json_encode($data);
+        }
+        else {
+            echo "Exercise ID required";
+        }
+    }
     
 }

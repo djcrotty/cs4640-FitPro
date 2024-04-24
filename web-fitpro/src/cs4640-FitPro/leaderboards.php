@@ -1,14 +1,3 @@
-<?php 
-if (isset($_POST['submit_weight'])) {
-   $exerciseId = $_POST['exercise_id'];
-   $weight = $_POST['weight']; 
-   $userId = $_SESSION['user_id']; 
-
-   $db->insertWeight($userId, $exerciseId, $weight);
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
    <head>
@@ -105,7 +94,7 @@ if (isset($_POST['submit_weight'])) {
             </tr>
          </tbody>
       </table>
-      <form action="leaderboard.php" method="post">
+      <form action="?command=leaderboards" method="post">
       <select name="exercise_id">
          <option value="1">Squats</option>
          <option value="2">Bench Press</option>

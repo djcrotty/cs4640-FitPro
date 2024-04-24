@@ -1,6 +1,6 @@
 <?php
-require_once '/opt/src/cs4640-FitPro/Config.php';
-require_once '/opt/src/cs4640-FitPro/Database.php';
+require_once '/students/vpv4ds/students/vpv4ds/opt/src/cs4640-FitPro/Config.php';
+require_once '/students/vpv4ds/students/vpv4ds/opt/src/cs4640-FitPro/Database.php';
 
 $db = new Database();
 

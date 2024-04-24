@@ -42,6 +42,11 @@
     </header>
     <h1 class="top-title">Create A New Workout</h1>
     <form action="?command=executecreateworkout" method="post">
+        <?php if (!empty($message)){ ?>
+        <div class="alert alert-danger col-xs-12">
+            <?=$message?>
+        </div>
+        <?php } ?>
         <label for="workout_name">Workout Name:</label>
         <input type="text" id="workout_name" name="workout_name" required>
         <br><br>
