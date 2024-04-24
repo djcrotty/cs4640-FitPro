@@ -23,10 +23,10 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ./web/src/:/opt/src/
-      - ./web/www/:/var/www/html/
-      - ./web/cgi-bin/:/usr/lib/cgi-bin/
-      - ./web/log/:/opt/log/
+      - ./web-fitpro/src/:/opt/src/
+      - ./web-fitpro/www/:/var/www/html/
+      - ./web-fitpro/cgi-bin/:/usr/lib/cgi-bin/
+      - ./web-fitpro/log/:/opt/log/
     depends_on:
       - db-fitpro
     environment:
