@@ -1,6 +1,6 @@
 <?php
-require_once 'Config.php';
-require_once 'Database.php';
+require_once '/opt/src/cs4640-FitPro/Config.php';
+require_once '/opt/src/cs4640-FitPro/Database.php';
 
 $db = new Database();
 
@@ -8,13 +8,18 @@ pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS user_seq;");
 pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS exercise_seq;");
 pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS user_exercise_seq;");
 
+pg_query($db->getConnection(), "DROP TABLE users CASCADE;");
+pg_query($db->getConnection(), "DROP TABLE exercises CASCADE;");
+pg_query($db->getConnection(), "DROP TABLE user_exercises CASCADE;");
+
 // users table
 $createUsersTableSQL = <<<SQL
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY DEFAULT nextval('user_seq'),
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL
+    password_hash VARCHAR(255) NOT NULL,
+    workouts INT
 );
 SQL;
 pg_query($db->getConnection(), $createUsersTableSQL);
@@ -44,8 +49,12 @@ CREATE TABLE IF NOT EXISTS user_exercises (
     exercise_id INT,
     sets INT,
     reps INT,
+    rest INT,
+    total_reps INT,
     weight INT,
     date_performed DATE,
+    workout INT,
+    workout_name VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (exercise_id) REFERENCES exercises(id)
 );

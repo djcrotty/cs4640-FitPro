@@ -25,17 +25,17 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
+                    <img src="static/flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                     &#9776;
                 </button>
                 <div class="collapse navbar-collapse" id="exCollapsingNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="leaderboards.html" class="nav-link">Leaderboard</a></li>
-                        <li class="nav-item"><a href="profile.html" class="nav-link">Profile</a></li>
-                        <li class="nav-item"><a href="workouts.html" class="nav-link">Workouts</a></li>
+                        <li class="nav-item"><a href="?command=welcome" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="?command=leaderboards" class="nav-link">Leaderboard</a></li>
+                        <li class="nav-item"><a href="?command=profile" class="nav-link">Profile</a></li>
+                        <li class="nav-item"><a href="?command=workouts" class="nav-link">Workouts</a></li>
                     </ul>
                     <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                         <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
@@ -69,7 +69,7 @@
                 <div id="user-container">
                     <div id="user-description">
                         <h2>
-                            Example User
+                            <?=$name?>
                         </h2>
                         <p>
                             description of user  
@@ -82,12 +82,13 @@
                         <img src="./static/calendar_placeholder.PNG" alt="Calendar Placeholder">
                     </div>
                 </div>
+                <?php foreach ($workouts as $workout) { ?>
                 <div class="p-3 m-3 bg-secondary" id="workouts-container">
                     <div class="d-flex flex-row align-items-center justify-content-between" id="workouts-selector-progress">
                         <div>
                             <div>
                                 <h4>
-                                    Progress
+                                    Progress in <?=$workout[0]["workout_name"]?>
                                 </h4>
                                 <div id="progress-bar">
                                     <p>
@@ -95,16 +96,18 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="btn-group" role="group" id="workout-selector">
+                            <!-- <div class="btn-group" role="group" id="workout-selector">
                                 <button type="button" class="btn btn-light">Chest</button>
                                 <button type="button" class="btn btn-light">Legs</button>
                                 <button type="button" class="btn btn-light">Push</button>
                                 <button type="button" class="btn btn-light">Pull</button>
-                              </div>
+                              </div> -->
                         </div>
-                        <button formaction="workouts.html" class="border btn btn-light h-25">
+                        <a href="?command=createworkout">
+                        <button class="border btn btn-light h-25">
                             Create New Workout +
                         </button>
+                        </a>
                     </div>
                     <div id="table">
                         <table class="table table-striped table-dark">
@@ -118,58 +121,51 @@
                             </tr>
                             <tr>
                                 <td>1</td>
-                                <td>Bench Press</td>
+                                <td><?= $exercises[$workout[0]["exercise_id"]]?></td>
                                 <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                                <td>3</td>
-                                <td>8</td>
-                                <td>90</td>
+                                <td><?=$workout[0]["sets"] ?></td>
+                                <td><?=$workout[0]["reps"] ?></td>
+                                <td><?=$workout[0]["rest"] ?></td>
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>Bicep Curls</td>
+                                <td><?= $exercises[$workout[1]["exercise_id"]]?></td>
                                 <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                                <td>3</td>
-                                <td>20</td>
-                                <td>60</td>
+                                <td><?=$workout[1]["sets"] ?></td>
+                                <td><?=$workout[1]["reps"] ?></td>
+                                <td><?=$workout[1]["rest"] ?></td>
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <td>Push Ups</td>
+                                <td><?= $exercises[$workout[2]["exercise_id"]]?></td>
                                 <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                                <td>3</td>
-                                <td>20</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Shoulder Press</td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                                <td>2</td>
-                                <td>12</td>
-                                <td>45</td>
+                                <td><?=$workout[2]["sets"] ?></td>
+                                <td><?=$workout[2]["reps"] ?></td>
+                                <td><?=$workout[2]["rest"] ?></td>
                             </tr>
                         </table>
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <div class="sidenav bg-secondary"id="friends-sidebar">
                 <h2 class="m-3">Friends</h2>
                 <ul>
                     <li id="friend-1">
-                        <a href="./profile.html">Example Friend 1</a>
-                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
+                        <a href="?command=profile">Example Friend 1</a>
+                        <button formaction="?command=profile" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-2">
-                        <a href="./profile.html">Example Friend 2</a>
-                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
+                        <a href="?command=profile">Example Friend 2</a>
+                        <button formaction="?command=profile" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-3">
-                        <a href="./profile.html">Example Friend 3</a>
-                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
+                        <a href="?command=profile">Example Friend 3</a>
+                        <button formaction="?command=profile" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-4">
-                        <a href="./profile.html">Example Friend 4</a>
-                        <button formaction="./profile.html" class="border btn btn-light">Profile</button>
+                        <a href="?command=profile">Example Friend 4</a>
+                        <button formaction="?command=profile" class="border btn btn-light">Profile</button>
                     </li>
                 </ul>
             </div>
@@ -177,10 +173,10 @@
         <footer>
             <nav>
                 <ul style="list-style: none; padding: 0; text-align: center;">
-                    <li style="display: inline; margin-right: 20px;"><a href="index.html" style="text-decoration: none; color: white;">Home</a></li>
-                    <li style="display: inline; margin-right: 20px;"><a href="leaderboard.html" style="text-decoration: none; color: white;">Leaderboard</a></li>
-                    <li style="display: inline; margin-right: 20px;"><a href="profile.html" style="text-decoration: none; color: white;">Profile</a></li>
-                    <li style="display: inline;"><a href="workouts.html" style="text-decoration: none; color: white;">Workouts</a></li>
+                    <li style="display: inline; margin-right: 20px;"><a href="?command=welcome" style="text-decoration: none; color: white;">Home</a></li>
+                    <li style="display: inline; margin-right: 20px;"><a href="?command=leaderboard" style="text-decoration: none; color: white;">Leaderboard</a></li>
+                    <li style="display: inline; margin-right: 20px;"><a href="?command=profile" style="text-decoration: none; color: white;">Profile</a></li>
+                    <li style="display: inline;"><a href="?command=workouts" style="text-decoration: none; color: white;">Workouts</a></li>
                 </ul>
             </nav>
             <p>&copy; 2024 FitPro. All rights reserved.</p>

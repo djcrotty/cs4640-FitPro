@@ -1,7 +1,7 @@
 <?php
 class Config {
     public static $db = [
-        "host" => "db", 
+        "host" => "db-fitpro", 
         "port" => "5432",
         "database" => "example", 
         "user" => "localuser", 

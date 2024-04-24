@@ -1,6 +1,13 @@
-<?php
-session_start();
+<?php 
+if (isset($_POST['submit_weight'])) {
+   $exerciseId = $_POST['exercise_id'];
+   $weight = $_POST['weight']; 
+   $userId = $_SESSION['user_id']; 
+
+   $db->insertWeight($userId, $exerciseId, $weight);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
@@ -29,20 +36,20 @@ session_start();
                <nav>
                <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
                 <!-- User is logged in -->
-                <a href="index.php" class="nav-item">Home</a>
-                <a href="leaderboards.php" class="nav-item">Leaderboard</a>
-                <a href="profile.html" class="nav-item">Profile</a>
-                <a href="workouts.html" class="nav-item">Workouts</a>
-                <a href="logout.php" class="nav-item">Logout</a>
+                <a href="?command=welcome" class="nav-item">Home</a>
+                <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+                <a href="?command=profile" class="nav-item">Profile</a>
+                <a href="?command=workouts" class="nav-item">Workouts</a>
+                <a href="?command=logout" class="nav-item">Logout</a>
             <?php else: ?>
                 <!-- User is not logged in -->
-                <a href="signin.php" class="nav-item">Sign-in</a>
+                <a href="?command=signin" class="nav-item">Sign-in</a>
             <?php endif; ?>
               </nav>
               </div>
             </div>
             <nav class="navbar">
-               <img src="flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
+               <img src="static/flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
                <p class="top-title">FitPro</p>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -72,61 +79,53 @@ session_start();
          <thead>
             <tr>
                <th>Username</th>
-               <th>Reps</th>
                <th>Weight</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>User1</td>
-               <td>10</td>
                <td>280lbs</td>
             </tr>
             <tr>
                <td>User2</td>
-               <td>8</td>
                <td>200lbs</td>
             </tr>
             <tr>
                <td>User3</td>
-               <td>12</td>
                <td>180lbs</td>
             </tr>
             <tr>
                <td>User4</td>
-               <td>15</td>
                <td>160lbs</td>
             </tr>
             <tr>
                <td>User5</td>
-               <td>9</td>
                <td>105lbs</td>
             </tr>
          </tbody>
       </table>
-      <form>
-         <label for="new-workout-dropdown">Select Workout:</label>
-         <select id="new-workout-dropdown" name="newWorkouts">
-            <option value="squats">Squats</option>
-            <option value="benchpress">Bench Press</option>
-            <option value="deadlift">Deadlift</option>
-         </select>
-         <label for="weight-input">Enter Weight:</label>
-         <input type="number" id="weight-input" name="weight" placeholder="Weight (lbs)" min="0">
-         <button type="submit" id="submit">Submit</button>
+      <form action="leaderboard.php" method="post">
+      <select name="exercise_id">
+         <option value="1">Squats</option>
+         <option value="2">Bench Press</option>
+         <option value="3">Deadlift</option>
+      </select>
+      <input type="number" name="weight" placeholder="Weight (lbs)" required>
+      <input type="submit" name="submit_weight" value="Submit Weight">
       </form>
       <footer>
          <nav>
          <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
-                <!-- User is logged in -->
-                <a href="index.php" class="nav-item">Home</a>
-                <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-                <a href="profile.html" class="nav-item">Profile</a>
-                <a href="workouts.html" class="nav-item">Workouts</a>
-                <a href="logout.php" class="nav-item">Logout</a>
+            <!-- User is logged in -->
+            <a href="?command=welcome" class="nav-item">Home</a>
+            <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+            <a href="?command=profile" class="nav-item">Profile</a>
+            <a href="?command=workouts" class="nav-item">Workouts</a>
+            <a href="?command=logout" class="nav-item">Logout</a>
             <?php else: ?>
                 <!-- User is not logged in -->
-                <a href="signin.php" class="nav-item">Sign-in</a>
+                <a href="?command=signin" class="nav-item">Sign-in</a>
             <?php endif; ?>
         </nav>
         <p>&copy; 2024 FitPro. All rights reserved.</p>

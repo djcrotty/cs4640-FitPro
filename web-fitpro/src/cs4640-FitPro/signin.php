@@ -1,29 +1,3 @@
-<?php
-session_start();
-
-require_once 'Config.php';
-require_once 'Database.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $db = new Database();
-
-    // Form data
-    $name = filter_input(INPUT_POST, 'name');
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password');
-
-    // PASSWORD HASHING
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-    // Add User into the database
-    if ($db->insertUser($name, $email, $passwordHash)) {
-        echo "<p>Registration successful!</p>";
-        header("Location: signin.php");
-        exit;
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
    <head>
@@ -37,10 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <meta property="og:title" content="page">
       <meta property="og:type" content="website">
       <meta property="og:image" content="">
-      <meta property="og:url" content="https://cs4640.cs.virginia.edu/vpv4ds/cs4640-FitPro/register.php">
-      <meta property="og:description" content="Registration Page for FitPro">
-      <meta property="og:site_name" content="Register - FitPro">
-      <title>Register - FitPro</title>
+      <meta property="og:url" content="https://cs4640.cs.virginia.edu/vpv4ds/cs4640-FitPro/login.html">
+      <meta property="og:description" content="Sign-in Page - FitPro">
+      <meta property="og:site_name" content="FitPro - Signin">
+      <title>FitPro - Signin</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
       <link rel="stylesheet" href="styles/signin.css">
    </head>
@@ -50,15 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="collapse" id="navbarToggleExternalContent">
           <div class="p-4">
            <nav>
-              <a href="index.html" class="nav-item">Home</a>
-              <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-              <a href="profile.html" class="nav-item">Profile</a>
-              <a href="workouts.html" class="nav-item">Workouts</a>
+              <a href="?command=welcome" class="nav-item">Home</a>
+              <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+              <a href="?command=profile" class="nav-item">Profile</a>
+              <a href="?command=workouts" class="nav-item">Workouts</a>
           </nav>
           </div>
         </div>
         <nav class="navbar">
-           <img src="flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
+           <img src="static/flex.png" alt="FitPro Logo" style="height: 40px; width: auto;">
            <p class="top-title">FitPro</p>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -67,24 +41,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </header>
     <h1 class="top-title">Sign-in to FitPro</h1>
-    <form action="register.php" method="post">
-      <label for="name">Name:</label>
-      <input type="name" id="name" name="name" required>
-      <br><br>
+    <form action="?command=signin" method="post">
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required>
       <br><br>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{9,14}$" title="9-14 Characters w/ a capital letter & number." required>
+      <input type="password" id="password" name="password" required>
       <br><br>
-      <button type="submit" id="sign-in">Register</button>
-    <a href="signin.php" style="text-decoration: underline; display: block;">Already Registered? Sign-in</a>
+      <button type="submit" id="sign-in">Sign-in</button>
+    </form>
+    <?php echo $message ?>
+    <a href="?command=register" style="text-decoration: underline; display: block;">Still Need to Register? Go Here</a>
     <footer>
       <nav>
-         <a href="index.html" class="nav-item">Home</a>
-         <a href="leaderboards.html" class="nav-item">Leaderboard</a>
-         <a href="profile.html" class="nav-item">Profile</a>
-         <a href="workouts.html" class="nav-item">Workouts</a>
+      <a href="?command=welcome" class="nav-item">Home</a>
+      <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+      <a href="?command=profile" class="nav-item">Profile</a>
+      <a href="?command=workouts" class="nav-item">Workouts</a>
      </nav>
      <p>&copy; 2024 FitPro. All rights reserved.</p>
     </footer>
