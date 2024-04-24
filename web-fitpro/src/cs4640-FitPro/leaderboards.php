@@ -54,28 +54,23 @@
          <p>Who's your strongest friend? Compare your progress and see where you stand.</p>
       </div>
       <label for="workout-dropdown">Workouts:</label>
-      <select id="workout-dropdown" name="workouts" onchange="updateLeaderboard()">
-         <option value="squats">Squats</option>
-         <option value="benchpress">Bench Press</option>
-         <option value="deadlift">Deadlift</option>
-      </select>
-      <label for="filter-dropdown">Compare:</label>
-      <select id="filter-dropdown" name="filter">
-         <option value="everyone">Everyone</option>
-         <option value="friends">Friends Only</option>
-         <option value="you">Only You</option>
-      </select>
-      <table id="leaderboard-table">
-         <thead>
-            <tr>
-                  <th>Username</th>
-                  <th>Weight</th>
-            </tr>
-         </thead>
-         <tbody>
-            <!-- Leaderboard rows will be inserted here dynamically -->
-         </tbody>
-      </table>
+<select id="workout-dropdown" name="workouts">
+    <option value="squats">Squats</option>
+    <option value="benchpress">Bench Press</option>
+    <option value="deadlift">Deadlift</option>
+</select>
+<table id="leaderboard-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Weight (lbs)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Leaderboard rows will be inserted here dynamically -->
+    </tbody>
+</table>
+
       <form action="?command=leaderboards" method="post">
       <select name="exercise_id">
          <option value="1">Squats</option>
@@ -101,7 +96,9 @@
         </nav>
         <p>&copy; 2024 FitPro. All rights reserved.</p>
       </footer>
-      <script src="leaderboards.js"></script>
+      <script>
+            <?php require_once($GLOBALS["src_path"]."leaderboards.js");?>
+        </script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
    </body>
 </html>

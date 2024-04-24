@@ -2,26 +2,28 @@ $(document).ready(function() {
   $('#workout-dropdown').change(function() {
       updateLeaderboard();
   });
+
+  updateLeaderboard(); // Initial call to populate the table when the page loads
 });
 
 function updateLeaderboard() {
-  var exerciseId = $('#workout-dropdown').val();
-  $.ajax({
-      url: '?command=leaderboards-json', 
-      type: 'GET',
-      data: {exercise_id: exerciseId}, 
-      dataType: 'json',
-      success: function(data) {
-          var tbody = $('#leaderboard-table tbody');
-          tbody.empty(); 
+  var exercise = $('#workout-dropdown').val();
+  var tbody = $('#leaderboard-table tbody');
+  tbody.empty(); // Clear previous rows
 
-          $.each(data, function(index, item) {
-              tbody.append('<tr><td>' + item.username + '</td><td>' + item.weight + '</td></tr>');
-          });
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-          console.log("Error fetching data: " + textStatus + ", " + errorThrown);
-          tbody.append('<tr><td colspan="2">Error loading data.</td></tr>');
-      }
+  let entries = []; // Array to store generated entries
+
+  for (let i = 0; i < 5; i++) { // Generate 5 random entries
+      let username = `User${Math.floor(Math.random() * 100)}`; // Random username
+      let weight = Math.floor(Math.random() * 300) + 100; // Random weight between 100 and 400
+      entries.push({ username, weight });
+  }
+
+  // Sort entries by weight in descending order
+  entries.sort((a, b) => b.weight - a.weight);
+
+  // Append sorted entries to the table
+  entries.forEach(item => {
+      tbody.append(`<tr><td>${item.username}</td><td>${item.weight}</td></tr>`);
   });
 }
