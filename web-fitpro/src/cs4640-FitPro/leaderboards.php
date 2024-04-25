@@ -16,6 +16,7 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
       <link rel="stylesheet" href="styles/leaderboards.css">
       <title>FitPro - Leaderboards</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    </head>
    <body>
       <header class="section coral">
@@ -53,47 +54,23 @@
          <p>Who's your strongest friend? Compare your progress and see where you stand.</p>
       </div>
       <label for="workout-dropdown">Workouts:</label>
-      <select id="workout-dropdown" name="workouts">
-         <option value="squats">Squats</option>
-         <option value="benchpress">Bench Press</option>
-         <option value="deadlift">Deadlift</option>
-      </select>
-      <label for="filter-dropdown">Compare:</label>
-      <select id="filter-dropdown" name="filter">
-         <option value="everyone">Everyone</option>
-         <option value="friends">Friends Only</option>
-         <option value="you">Only You</option>
-      </select>
-      <table>
-         <thead>
-            <tr>
-               <th>Username</th>
-               <th>Weight</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td>User1</td>
-               <td>280lbs</td>
-            </tr>
-            <tr>
-               <td>User2</td>
-               <td>200lbs</td>
-            </tr>
-            <tr>
-               <td>User3</td>
-               <td>180lbs</td>
-            </tr>
-            <tr>
-               <td>User4</td>
-               <td>160lbs</td>
-            </tr>
-            <tr>
-               <td>User5</td>
-               <td>105lbs</td>
-            </tr>
-         </tbody>
-      </table>
+<select id="workout-dropdown" name="workouts">
+    <option value="squats">Squats</option>
+    <option value="benchpress">Bench Press</option>
+    <option value="deadlift">Deadlift</option>
+</select>
+<table id="leaderboard-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Weight (lbs)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Leaderboard rows will be inserted here dynamically -->
+    </tbody>
+</table>
+
       <form action="?command=leaderboards" method="post">
       <select name="exercise_id">
          <option value="1">Squats</option>
@@ -105,19 +82,23 @@
       </form>
       <footer>
          <nav>
-            <!-- User is logged in -->
-            <a href="?command=welcome" class="nav-item">Home</a>
-            <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
-            <a href="?command=profile" class="nav-item">Profile</a>
-            <a href="?command=workouts" class="nav-item">Workouts</a>
-            <a href="?command=logout" class="nav-item">Logout</a>
-            <?php else: ?>
-                <!-- User is not logged in -->
-                <a href="?command=signin" class="nav-item">Sign-in</a>
-            <?php endif; ?>
+         <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
+                    <!-- User is logged in -->
+                    <a href="?command=welcome" class="nav-item">Home</a>
+                    <a href="?command=leaderboards" class="nav-item">Leaderboard</a>
+                    <a href="?command=profile" class="nav-item">Profile</a>
+                    <a href="?command=workouts" class="nav-item">Workouts</a>
+                    <a href="?command=logout" class="nav-item">Logout</a>
+                <?php else: ?>
+                    <!-- User is not logged in -->
+                    <a href="?command=signin" class="nav-item">Sign-in</a>
+                <?php endif; ?>
         </nav>
         <p>&copy; 2024 FitPro. All rights reserved.</p>
       </footer>
+      <script>
+            <?php require_once($GLOBALS["src_path"]."leaderboards.js");?>
+        </script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
    </body>
 </html>
