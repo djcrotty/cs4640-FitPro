@@ -131,5 +131,29 @@ class Database {
       
         return true;
       }
+
+      public function getTopPerformersForWorkouts() {
+        $workouts = ['Squat', 'Bench Press', 'Deadlift'];
+        $leaderboards = [];
+        foreach ($workouts as $workout) {
+            // Using leaderboards
+            $query = "SELECT l.username, l.weight
+                      FROM leaderboards l
+                      JOIN exercises e ON l.exercise_id = e.id
+                      WHERE e.name = $1
+                      ORDER BY l.weight DESC
+                      LIMIT 5";
+    
+            $result = pg_query_params($this->dbConnection, $query, array($workout));
+            if ($result === false) {
+                echo "Error fetching leaderboard for " . htmlspecialchars($workout) . ": " . pg_last_error($this->dbConnection);
+                continue;
+            }
+    
+            $leaderboards[$workout] = pg_fetch_all($result);
+        }
+        return $leaderboards;
+    }
+    
 }
 ?>

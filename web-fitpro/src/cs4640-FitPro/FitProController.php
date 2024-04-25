@@ -60,6 +60,9 @@ class FitProController {
             case "executecreateworkout":
                 $this->createWorkout();
                 break;
+            case "database-contents":
+                $this->showDatabaseContents();
+                break;
             case "createworkout":
                 $this->showcreateWorkout();
                 break;
@@ -90,7 +93,7 @@ class FitProController {
 
             // checking that the email and password are correct
             if (!empty($email) && !empty($password) && $db->authenticateUser($email, $password)) {
-                // Success
+
                 $_SESSION['user_logged_in'] = true;
                 $_SESSION['user_email'] = $email;
                 $res = $db->getUserInfo($email);
@@ -101,7 +104,6 @@ class FitProController {
                 header('Location: ?command=welcome');
                 exit;
             } else {
-                // Failure authentication
                 $message = "<div class=\"alert alert-danger d-inline-block\" role=\"alert\">
                 Invalid email or password.
                 </div>";
@@ -266,19 +268,36 @@ class FitProController {
     }
 
     public function leaderboardsjson() {
-        $data = [];
+        $db = new Database();
         if (isset($_GET["exercise_id"]) && !empty($_GET["exercise_id"])){
-            $db = new Database();
             $exercise_id = $_GET["exercise_id"];
-            $data = $db->query("SELECT user_id, weight, date_performed from user_exercises WHERE exercise_id = $exercise_id ORDER BY weight ASC");
-            
+            $query = "SELECT username, weight FROM leaderboards WHERE exercise_id = $1 ORDER BY weight DESC";
+            $result = pg_prepare($db->getConnection(), "leaderboard_data", $query);
+            $result = pg_execute($db->getConnection(), "leaderboard_data", array($exercise_id));
+    
+            $data = pg_fetch_all($result);
             header('Content-type: application/json');
             echo json_encode($data);
-        }
-        else {
-            echo "Exercise ID required";
+        } else {
+            echo json_encode(["error" => "Exercise ID required"]);
         }
     }
+
+    public function showDatabaseContents() {
+        $db = new Database();
+        // Query to fetch all entries from the leaderboards table tesing mostly
+        $results = $db->query("SELECT exercise_id, username, weight FROM leaderboards");
+        header('Content-Type: text/plain');
+    
+        if ($results) {
+            foreach ($results as $row) {
+                echo "Exercise ID: " . $row['exercise_id'] . ", Username: " . $row['username'] . ", Weight: " . $row['weight'] . "\n";
+            }
+        } else {
+            echo "No data found or query failed.";
+        }
+    }
+    
 
     public function edit_profile() {
         if(isset($_POST["schedule"])) {
