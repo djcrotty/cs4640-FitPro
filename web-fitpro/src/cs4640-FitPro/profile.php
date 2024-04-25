@@ -83,7 +83,7 @@
                                 <button class="button" id="description_button">Edit</button>
                         </form>
                         <h4> <!--Should change based on calendar-->
-                            Todays workout is Chest
+                            Todays workout is <?=$today_workout_name?>
                         </h4>
                     </div>
                 </div>
@@ -122,27 +122,21 @@
                     </button>
                     </a>
                 <?php }
-                    foreach ($workouts as $workout) { 
+                    foreach ($workouts as $key => $workout) { 
                 ?>
-                <div class="p-3 m-3 bg-secondary" id="workouts-container">
+                <div class="p-3 m-3 bg-secondary" id="workouts-container-<?=$key?>">
                     <div class="d-flex flex-row align-items-center justify-content-between" id="workouts-selector-progress">
                         <div>
                             <div>
                                 <h4>
                                     Progress in <?=$workout[0]["workout_name"]?>
                                 </h4>
-                                <div id="progress-bar">
-                                    <p>
+                                <div>
+                                    <p id="progress-bar-<?=$key?>">
                                         75% Complete
                                     </p>
                                 </div>
                             </div>
-                            <!-- <div class="btn-group" role="group" id="workout-selector">
-                                <button type="button" class="btn btn-light">Chest</button>
-                                <button type="button" class="btn btn-light">Legs</button>
-                                <button type="button" class="btn btn-light">Push</button>
-                                <button type="button" class="btn btn-light">Pull</button>
-                              </div> -->
                         </div>
                         <a href="?command=createworkout">
                         <button class="border btn btn-light h-25">
@@ -150,8 +144,8 @@
                         </button>
                         </a>
                     </div>
-                    <div id="table">
-                        <table class="table table-striped table-dark">
+                    <div>
+                        <table class="table table-striped table-dark" id="table-<?=$key?>">
                             <tr>
                                 <th scope="col">Position</th>
                                 <th scope="col">Exercise</th>
@@ -163,7 +157,7 @@
                             <tr>
                                 <td>1</td>
                                 <td><?= $exercises[$workout[0]["exercise_id"]]?></td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
+                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-1"></td>
                                 <td><?=$workout[0]["sets"] ?></td>
                                 <td><?=$workout[0]["reps"] ?></td>
                                 <td><?=$workout[0]["rest"] ?></td>
@@ -171,7 +165,7 @@
                             <tr>
                                 <td>2</td>
                                 <td><?= $exercises[$workout[1]["exercise_id"]]?></td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
+                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-2"></td>
                                 <td><?=$workout[1]["sets"] ?></td>
                                 <td><?=$workout[1]["reps"] ?></td>
                                 <td><?=$workout[1]["rest"] ?></td>
@@ -179,7 +173,7 @@
                             <tr>
                                 <td>3</td>
                                 <td><?= $exercises[$workout[2]["exercise_id"]]?></td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
+                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-3"></td>
                                 <td><?=$workout[2]["sets"] ?></td>
                                 <td><?=$workout[2]["reps"] ?></td>
                                 <td><?=$workout[2]["rest"] ?></td>

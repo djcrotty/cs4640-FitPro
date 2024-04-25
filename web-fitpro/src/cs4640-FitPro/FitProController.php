@@ -171,9 +171,11 @@ class FitProController {
         $workouts = []; //2D array of workouts with a list of exercises
         for ($i = 1; $i <= $total_workouts; $i++) {
             $workout = $db->getWorkout($user_id, $i);
-            $key = array_search($i, $schedule);
+            $key = array_keys($schedule, $i);
             if ($key != false) {
-                $schedule[$key] = $workout[0]["workout_name"];
+                foreach($key as $schedule_key) {
+                    $schedule[$schedule_key] = $workout[0]["workout_name"];
+                }
             }
             $workout_names[] = $workout[0]["workout_name"];
             $workouts[] = $workout;
@@ -183,6 +185,9 @@ class FitProController {
         foreach($schedule as $key => $workout_name) {
             if($workout_name == NULL) {
                 $schedule[$key] = "NONE";
+            }
+            else if($workout_name == 0) {
+                $schedule[$key] = "Rest";
             }
         }
         array_unshift($workout_names, "Rest");
@@ -209,11 +214,20 @@ class FitProController {
         if($description == NULL) {
             $description = "";
         }
+        $today_key = strtolower(date('l'))."_id";
+        $today_workout_id = $db->query("SELECT $today_key FROM user_workouts WHERE id = $user_id")[0][$today_key];
+        $today_workout_name = "Rest";
         $workouts = []; //2D array of workouts with a list of exercises
         for ($i = 1; $i <= $total_workouts; $i++) {
-            $workouts[] = $db->getWorkout($user_id, $i);
+            $workout = $db->getWorkout($user_id, $i);
+            $workouts[] = $workout;
+            if($i == $today_workout_id) {
+                $today_workout_name = $workout[0]["workout_name"];
+            }
         }
         $exercises = $db->getExercises();
+
+
         include($GLOBALS["src_path"]."profile.php");
     }
 
@@ -268,17 +282,20 @@ class FitProController {
 
     public function edit_profile() {
         if(isset($_POST["schedule"])) {
+            $db = new Database();
             $day_of_week = $_POST["schedule"];
             $workout_name = $_POST["workout"];
             $user_id = $_SESSION["user_id"];
-            $db = new Database();
-            $workout_id = $db->query("SELECT workout FROM user_exercises WHERE user_id = $user_id AND workout_name = '$workout_name'")[0]["workout"];
+            $workout_id = 0;
+            if($workout_name != "Rest") {
+                $workout_id = $db->query("SELECT workout FROM user_exercises WHERE user_id = $user_id AND workout_name = '$workout_name'")[0]["workout"];
+            }
             $db->query("UPDATE user_workouts SET $day_of_week = $workout_id WHERE id = $user_id");
         }
         if(isset($_POST["description"])) {
+            $db = new Database();
             $text = $_POST["description"];
             $user_id = $_SESSION["user_id"];
-            $db = new Database();
             $db->query("UPDATE users SET user_description = '$text' WHERE id = $user_id");
         }
     }

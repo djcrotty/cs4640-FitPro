@@ -19,3 +19,13 @@ function edit_description(event) {
 
 let $form_button = $("#description_button");
 $form_button.on("click", edit_description);
+
+let $tables = $("table");
+$tables.each(function() {
+    let $checkboxes = $(this).find("input");
+    $checkboxes.on("click", function() {
+        console.log("clicked");
+        
+    });
+    console.log($checkboxes);
+});
