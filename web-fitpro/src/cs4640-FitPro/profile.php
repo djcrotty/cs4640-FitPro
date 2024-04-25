@@ -146,7 +146,7 @@
                         </a>
                     </div>
                     <div>
-                        <table class="table table-striped table-dark" id="table-<?=$key?>">
+                        <table class="table table-striped table-dark" id="<?=$key?>">
                             <tr>
                                 <th scope="col">Position</th>
                                 <th scope="col">Exercise</th>
