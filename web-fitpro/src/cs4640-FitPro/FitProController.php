@@ -161,7 +161,7 @@ class FitProController {
         $usernames = [];
         foreach ($workouts as $workout) {
             $res = $db->getUserNameEmail($workout["user_id"]);
-            $usernames[$res[0]["name"]] = [$workout["workout_name"], $workout["user_id"]];
+            $usernames[] = [$workout["workout_name"], $workout["user_id"], $res[0]["name"]];
         }
         $email = $_SESSION["user_email"];
         $name = $_SESSION["user_name"];
@@ -253,9 +253,10 @@ class FitProController {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //validate user input
             $matches = [];
-            if(preg_match('/^([A-Za-z0-9_]+)$/', $_POST["workout_name"], $matches)) { 
+            if(preg_match('/^([A-Za-z0-9_ \'!?]+)$/', $_POST["workout_name"], $matches)) { 
                 $db = new Database();
                 $total_workouts = $db->getUserInfo($_SESSION["user_email"])["workouts"] + 1;
+                echo "creating workout";
                 $db->insertExercise($_SESSION["user_id"], $_POST["exercise1"], $_POST["set1"], $_POST["rep1"], $_POST["rest1"], $_POST["weight1"], $total_workouts, $_POST["workout_name"]);
                 $db->insertExercise($_SESSION["user_id"], $_POST["exercise2"], $_POST["set2"], $_POST["rep2"], $_POST["rest2"], $_POST["weight2"], $total_workouts, $_POST["workout_name"]);
                 $db->insertExercise($_SESSION["user_id"], $_POST["exercise3"], $_POST["set3"], $_POST["rep3"], $_POST["rest3"], $_POST["weight3"], $total_workouts, $_POST["workout_name"]);

@@ -36,30 +36,7 @@
                         <li class="nav-item"><a href="?command=leaderboards" class="nav-link">Leaderboard</a></li>
                         <li class="nav-item"><a href="?command=profile" class="nav-link">Profile</a></li>
                         <li class="nav-item"><a href="?command=workouts" class="nav-link">Workouts</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                        <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
-                        <li class="dropdown order-1">
-                            <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
-                            <ul class="dropdown-menu dropdown-menu-right mt-1">
-                              <li class="p-3">
-                                    <form class="form" role="form">
-                                        <div class="form-group">
-                                            <input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                        </div>
-                                        <div class="form-group text-xs-center">
-                                            <small><a href="#">Forgot password?</a></small>
-                                        </div>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a href="?command=logout" class="nav-link">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -89,7 +66,7 @@
                         <?php foreach ($usernames as $name=>$workout) { ?>
                         <tr id="new-workout-1">
                             <td>100</td>
-                            <td><?= $name ?></td>
+                            <td><?= $workout[2] ?></td>
                             <td><a href="?command=profile&id=<?= $workout[1]?>"> <?= $workout[0] ?></a></td>
                         </tr>
                         <?php } ?>
