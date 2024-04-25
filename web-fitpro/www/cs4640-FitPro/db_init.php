@@ -39,7 +39,7 @@ SQL;
 pg_query($db->getConnection(), $createExercisesTableSQL);
 
 // Only three exercises tracked right now, we'll add more later
-$exerciseNames = ['Squat', 'Bench Press', 'Deadlift'];
+$exerciseNames = ['Squat', 'Bench Press', 'Deadlift', 'Bicep Curls', 'Leg Extensions', 'Push-ups'];
 foreach ($exerciseNames as $name) {
     $insertExerciseSQL = "INSERT INTO exercises (name) VALUES ($1) ON CONFLICT (name) DO NOTHING;";
     pg_prepare($db->getConnection(), "", $insertExerciseSQL);

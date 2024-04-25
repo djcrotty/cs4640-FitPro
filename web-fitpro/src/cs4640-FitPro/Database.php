@@ -62,9 +62,8 @@ class Database {
     }
 
     public function getUserInfo($email) {
-        $result = pg_prepare($this->dbConnection, "fetch_user", "SELECT name, id, workouts, user_description FROM users WHERE email = $1 LIMIT 1");
-        $result = pg_execute($this->dbConnection, "fetch_user", array($email));
-        return pg_fetch_all($result)[0];
+        $result = $this->query("SELECT name, id, workouts, user_description FROM users WHERE email = '$email' LIMIT 1");
+        return $result[0];
     }
 
     public function getUserNameEmail($id) {

@@ -39,8 +39,9 @@
                         <li class="nav-item"><a href="?command=leaderboards" class="nav-link">Leaderboard</a></li>
                         <li class="nav-item"><a href="?command=profile" class="nav-link">Profile</a></li>
                         <li class="nav-item"><a href="?command=workouts" class="nav-link">Workouts</a></li>
+                        <li class="nav-item"><a href="?command=logout" class="nav-link">Logout</a></li>
                     </ul>
-                    <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                    <!-- <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                         <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
                         <li class="dropdown order-1">
                             <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
@@ -63,7 +64,7 @@
                                 </li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </nav>
@@ -80,7 +81,7 @@
                         <form id="description_form">
                                 <label for="text_description">Enter A Description About Yourself:</label>
                                 <input type="text" id="text_description" name="text_description" required>
-                                <button class="button" id="description_button">Edit</button>
+                                <button class="border btn btn-light" id="description_button">Edit</button>
                         </form>
                         <h4> <!--Should change based on calendar-->
                             Todays workout is <?=$today_workout_name?>
@@ -187,8 +188,8 @@
                 <h2 class="m-3">Friends</h2>
                 <ul>
                     <li id="friend-1">
-                        <a href="?command=profile">Example Friend 1</a>
-                        <button formaction="?command=profile" class="border btn btn-light">Profile</button>
+                        <a href="?command=profile&id=7">Example Friend 1</a>
+                        <button formaction="?command=profile&id=7" class="border btn btn-light">Profile</button>
                     </li>
                     <li id="friend-2">
                         <a href="?command=profile">Example Friend 2</a>
