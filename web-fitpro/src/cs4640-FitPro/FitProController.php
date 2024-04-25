@@ -63,6 +63,11 @@ class FitProController {
             case "createworkout":
                 $this->showcreateWorkout();
                 break;
+            case "edit_profile":
+                $this->edit_profile();
+                break;
+            case "edit_workouts":
+                $this->edit_workouts();
             case "logout":
                 $this->logout();
                 // no break; logout will also show the welcome page.
@@ -159,12 +164,29 @@ class FitProController {
         $email = $_SESSION["user_email"];
         $name = $_SESSION["user_name"];
         $user_id = $_SESSION["user_id"];
+
+        $schedule = $db->query("SELECT * FROM user_workouts WHERE id = $user_id")[0];
         $total_workouts = $db->getUserInfo($email)["workouts"];
+        $workout_names = [];
         $workouts = []; //2D array of workouts with a list of exercises
         for ($i = 1; $i <= $total_workouts; $i++) {
-            $workouts[] = $db->getWorkout($user_id, $i);
+            $workout = $db->getWorkout($user_id, $i);
+            $key = array_search($i, $schedule);
+            if ($key != false) {
+                $schedule[$key] = $workout[0]["workout_name"];
+            }
+            $workout_names[] = $workout[0]["workout_name"];
+            $workouts[] = $workout;
         }
         $exercises = $db->getExercises();
+
+        foreach($schedule as $key => $workout_name) {
+            if($workout_name == NULL) {
+                $schedule[$key] = "NONE";
+            }
+        }
+        array_unshift($workout_names, "Rest");
+        array_unshift($workout_names, "Select a workout");
         include($GLOBALS["src_path"]."workouts.php");
     }
 
@@ -181,7 +203,12 @@ class FitProController {
             $name = $res[0]["name"];
             $email = $res[0]["email"];
         }
-        $total_workouts = $db->getUserInfo($email)["workouts"];
+        $user_info = $db->getUserInfo($email);
+        $total_workouts = $user_info["workouts"];
+        $description = $user_info["user_description"];
+        if($description == NULL) {
+            $description = "";
+        }
         $workouts = []; //2D array of workouts with a list of exercises
         for ($i = 1; $i <= $total_workouts; $i++) {
             $workouts[] = $db->getWorkout($user_id, $i);
@@ -236,6 +263,23 @@ class FitProController {
         }
         else {
             echo "Exercise ID required";
+        }
+    }
+
+    public function edit_profile() {
+        if(isset($_POST["schedule"])) {
+            $day_of_week = $_POST["schedule"];
+            $workout_name = $_POST["workout"];
+            $user_id = $_SESSION["user_id"];
+            $db = new Database();
+            $workout_id = $db->query("SELECT workout FROM user_exercises WHERE user_id = $user_id AND workout_name = '$workout_name'")[0]["workout"];
+            $db->query("UPDATE user_workouts SET $day_of_week = $workout_id WHERE id = $user_id");
+        }
+        if(isset($_POST["description"])) {
+            $text = $_POST["description"];
+            $user_id = $_SESSION["user_id"];
+            $db = new Database();
+            $db->query("UPDATE users SET user_description = '$text' WHERE id = $user_id");
         }
     }
     

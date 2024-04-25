@@ -38,6 +38,8 @@ class Database {
             echo "Error executing the INSERT statement: " . pg_last_error($this->dbConnection);
             return false;
         }
+        $id = $this->getUserInfo($email)["id"];
+        $this->query("INSERT INTO user_workouts (id) VALUES ($id)");
 
         return true; 
     }
@@ -60,7 +62,7 @@ class Database {
     }
 
     public function getUserInfo($email) {
-        $result = pg_prepare($this->dbConnection, "fetch_user", "SELECT name, id, workouts FROM users WHERE email = $1 LIMIT 1");
+        $result = pg_prepare($this->dbConnection, "fetch_user", "SELECT name, id, workouts, user_description FROM users WHERE email = $1 LIMIT 1");
         $result = pg_execute($this->dbConnection, "fetch_user", array($email));
         return pg_fetch_all($result)[0];
     }

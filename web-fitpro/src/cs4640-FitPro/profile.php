@@ -16,9 +16,12 @@
         <meta property="og:description" content="Profile base page for FitPro, a way for gymgoers to track and compete">
         <meta property="og:site_name" content="FitPro - Profile">
         
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/calendar.css">
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/profile.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>FitPro - Profile</title>
     </head>  
     <body> 
@@ -71,15 +74,45 @@
                         <h2>
                             <?=$name?>
                         </h2>
-                        <p>
-                            description of user  
+                        <p id="user_description">
+                            <?=$description?>
                         </p>
+                        <form id="description_form">
+                                <label for="text_description">Enter A Description About Yourself:</label>
+                                <input type="text" id="text_description" name="text_description" required>
+                                <button class="button" id="description_button">Edit</button>
+                        </form>
                         <h4> <!--Should change based on calendar-->
                             Todays workout is Chest
                         </h4>
                     </div>
-                    <div id="calendar">
-                        <img src="./static/calendar_placeholder.PNG" alt="Calendar Placeholder">
+                </div>
+                <div class="calendar-html">
+                    <div class="calendar-container">
+                        <header class="calendar-header">
+                            <p class="calendar-current-date"></p>
+                            <div class="calendar-navigation">
+                                <span id="calendar-prev" class="material-symbols-rounded">
+                                    chevron_left
+                                </span>
+                                <span id="calendar-next"
+                                    class="material-symbols-rounded">
+                                    chevron_right
+                                </span>
+                            </div>
+                        </header>
+                        <div class="calendar-body">
+                            <ul class="calendar-weekdays">
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tue</li>
+                                <li>Wed</li>
+                                <li>Thu</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                            </ul>
+                            <ul class="calendar-dates"></ul>
+                        </div>
                     </div>
                 </div>
                 <?php if (empty($workouts)) { ?>
@@ -189,8 +222,12 @@
             </nav>
             <p>&copy; 2024 FitPro. All rights reserved.</p>
         </footer>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            <?php require_once($GLOBALS["src_path"]."javascript/calendar.js");?>
+        </script>
+        <script>
+            <?php require_once($GLOBALS["src_path"]."javascript/profile.js");?>
+        </script>
     </body>
 </html>

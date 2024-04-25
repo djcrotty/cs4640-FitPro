@@ -16,6 +16,7 @@
         <meta property="og:description" content="Workouts base page for FitPro, a way for gymgoers to track and compete">
         <meta property="og:site_name" content="FitPro - Workouts">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/workouts.css">
         <title>FitPro - Workouts</title>
@@ -97,14 +98,42 @@
             </div>
             <div class="p-3 m-3 bg-secondary" id="workout-schedule-container">
                 <h2 class="p-3">Workout Schedule</h2>
-                <ul class="p-3 d-flex flex-column justify-content-evenly list-group list-group-flush ">
-                    <li><p>Monday - Chest</p><button class="border btn btn-light">Edit</button></li>
-                    <li><p>Tuesday- Rest</p> <button class="border btn btn-light">Edit</button></li>
-                    <li><p>Wednesday- Legs </p><button class="border btn btn-light">Edit</button></li>
-                    <li><p>Thursday- Rest </p><button class="border btn btn-light">Edit</button></li>
-                    <li><p>Friday- Pull </p><button class="border btn btn-light">Edit</button></li>
-                    <li><p>Saturday- Push </p><button class="border btn btn-light">Edit</button></li>
-                    <li><p>Sunday- Chest </p><button class="border btn btn-light">Edit</button></li>
+                <ul class="p-3 d-flex flex-column justify-content-evenly list-group list-group-flush" id="schedule-list">
+                    <li><p>Monday - <?=$schedule["monday_id"]?></p>
+                        <select name="Monday" id="monday">
+                            <?php foreach($workout_names as $workout_name) { echo "<option value=\"".$workout_name."\">".$workout_name."</option>"; }?>
+                        </select>
+                    </li>
+                    <li><p>Tuesday - <?=$schedule["tuesday_id"]?></p> 
+                        <select name="Tuesday" id="tuesday">
+                            <?php foreach($workout_names as $workout_name) { echo "<option value=\"".$workout_name."\">".$workout_name."</option>"; }?>
+                        </select>
+                    </li>
+                    <li><p>Wednesday - <?=$schedule["wednesday_id"]?></p>
+                        <select name="Wednesday" id="wednesday">
+                            <?php foreach($workout_names as $workout_name) { echo "<option value=\"".$workout_name."\">".$workout_name."</option>"; }?>
+                        </select>
+                    </li>
+                    <li><p>Thursday - <?=$schedule["thursday_id"]?></p>
+                        <select name="Thursday" id="thursday">
+                            <?php foreach($workout_names as $workout_name) { echo "<option value=\"".$workout_name."\">".$workout_name."</option>"; }?>
+                        </select>
+                    </li>
+                    <li><p>Friday - <?=$schedule["friday_id"]?></p>
+                        <select name="Friday" id="friday">
+                            <?php foreach($workout_names as $workout_name) { echo "<option value=\"".$workout_name."\">".$workout_name."</option>"; }?>
+                        </select>
+                    </li>
+                    <li><p>Saturday - <?=$schedule["saturday_id"]?></p>
+                        <select name="Saturday" id="saturday">
+                            <?php foreach($workout_names as $workout_name) { echo "<option value=\"".$workout_name."\">".$workout_name."</option>"; }?>
+                        </select>
+                    </li>
+                    <li><p>Sunday - <?=$schedule["sunday_id"]?></p>
+                        <select name="Sunday" id="sunday">
+                            <?php foreach($workout_names as $workout_name) { echo "<option value=\"".$workout_name."\">".$workout_name."</option>"; }?>
+                        </select>
+                    </li>
                 </ul>
             </div>
             <?php if (empty($workouts)) { ?>
@@ -193,8 +222,10 @@
             </nav>
             <p>&copy; 2024 FitPro. All rights reserved.</p>
          </footer>
-         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            <?php require_once($GLOBALS["src_path"]."/javascript/workouts.js");?>
+        </script>
     </body>
 </html>

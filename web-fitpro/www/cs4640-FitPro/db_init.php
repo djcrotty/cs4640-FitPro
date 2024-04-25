@@ -9,10 +9,12 @@ $db = new Database();
 pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS user_seq;");
 pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS exercise_seq;");
 pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS user_exercise_seq;");
+pg_query($db->getConnection(), "CREATE SEQUENCE IF NOT EXISTS user_workouts_seq;");
 
 pg_query($db->getConnection(), "DROP TABLE users CASCADE;");
 pg_query($db->getConnection(), "DROP TABLE exercises CASCADE;");
 pg_query($db->getConnection(), "DROP TABLE user_exercises CASCADE;");
+pg_query($db->getConnection(), "DROP TABLE user_workouts CASCADE;");
 
 // users table
 $createUsersTableSQL = <<<SQL
@@ -21,7 +23,8 @@ CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    workouts INT
+    workouts INT,
+    user_description VARCHAR(255)
 );
 SQL;
 pg_query($db->getConnection(), $createUsersTableSQL);
@@ -62,6 +65,21 @@ CREATE TABLE IF NOT EXISTS user_exercises (
 );
 SQL;
 pg_query($db->getConnection(), $createUserExercisesTableSQL);
+
+// create the workouts table
+$createWorkoutsTableSQL = <<<SQL
+CREATE TABLE IF NOT EXISTS user_workouts (
+    id INT PRIMARY KEY DEFAULT nextval('user_workouts_seq'),
+    monday_id INT,
+    tuesday_id INT,
+    wednesday_id INT,
+    thursday_id INT,
+    friday_id INT,
+    saturday_id INT,
+    sunday_id INT
+);
+SQL;
+pg_query($db->getConnection(), $createWorkoutsTableSQL);
 
 echo "Database tables initialized successfully.";
 ?>
