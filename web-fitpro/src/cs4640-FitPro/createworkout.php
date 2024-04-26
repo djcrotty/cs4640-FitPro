@@ -43,79 +43,79 @@
     </header>
     <h1 class="top-title">Create A New Workout</h1>
     <form action="?command=executecreateworkout" method="post">
-        <?php if (!empty($message)){ ?>
-        <div class="alert alert-danger col-xs-12" id="message">
-            <?=$message?>
-        </div>
-        <?php } ?>
-        <label for="workout_name">Workout Name:</label>
-        <input type="text" id="workout_name" name="workout_name" required>
-        <br><br>
-        <label for="exercise1">Exercise 1:</label>
-        <select id="exercise1" name="exercise1">
-            <?php
-            foreach ($exercises as $id=>$exercise) {
-                echo "<option value=".$id.">".$exercise."</option>";
-            }
-            ?>
-        </select>
-        <br><br>
-        <label for="set1">Sets:</label>
-        <input type="number" id="set1" name="set1" required>
-        <br><br>
-        <label for="rep1">Reps:</label>
-        <input type="number" id="rep1" name="rep1" required>
-        <br><br>
-        <label for="rest1">Rest in Seconds:</label>
-        <input type="number" id="rest1" name="rest1" required>
-        <br><br>
-        <label for="weight1">Weight in kg:</label>
-        <input type="number" id="weight1" name="weight1" required>
-        <br><br>
+      <?php if (!empty($message)){ ?>
+      <div class="alert alert-danger col-xs-12" id="message">
+          <?=$message?>
+      </div>
+      <?php } ?>
+      <label for="workout_name">Workout Name:</label>
+      <input type="text" id="workout_name" name="workout_name" required>
+      <br><br>
+      <label for="exercise1">Exercise 1:</label>
+      <select id="exercise1" name="exercise1">
+          <?php
+          foreach ($exercises as $id=>$exercise) {
+              echo "<option value=".$id.">".$exercise."</option>";
+          }
+          ?>
+      </select>
+      <br><br>
+      <label for="set1">Sets:</label>
+      <input type="number" id="set1" name="set1" required>
+      <br><br>
+      <label for="rep1">Reps:</label>
+      <input type="number" id="rep1" name="rep1" required>
+      <br><br>
+      <label for="rest1">Rest in Seconds:</label>
+      <input type="number" id="rest1" name="rest1" required>
+      <br><br>
+      <label for="weight1">Weight in kg:</label>
+      <input type="number" id="weight1" name="weight1" required>
+      <br><br>
 
-        <label for="exercise2">Exercise 2:</label>
-        <select id="exercise2" name="exercise2">
-            <?php
-            foreach ($exercises as $id=>$exercise) {
-                echo "<option value=".$id.">".$exercise."</option>";
-            }
-            ?>
-        </select>
-        <br><br>
-        <label for="set2">Sets:</label>
-        <input type="number" id="set2" name="set2" required>
-        <br><br>
-        <label for="rep2">Reps:</label>
-        <input type="number" id="rep2" name="rep2" required>
-        <br><br><label for="rest2">Rest in Seconds:</label>
-        <input type="number" id="rest2" name="rest2" required>
-        <br><br>
-        <label for="weight2">Weight in kg:</label>
-        <input type="number" id="weight2" name="weight2" required>
-        <br><br>
+      <label for="exercise2">Exercise 2:</label>
+      <select id="exercise2" name="exercise2">
+          <?php
+          foreach ($exercises as $id=>$exercise) {
+              echo "<option value=".$id.">".$exercise."</option>";
+          }
+          ?>
+      </select>
+      <br><br>
+      <label for="set2">Sets:</label>
+      <input type="number" id="set2" name="set2" required>
+      <br><br>
+      <label for="rep2">Reps:</label>
+      <input type="number" id="rep2" name="rep2" required>
+      <br><br><label for="rest2">Rest in Seconds:</label>
+      <input type="number" id="rest2" name="rest2" required>
+      <br><br>
+      <label for="weight2">Weight in kg:</label>
+      <input type="number" id="weight2" name="weight2" required>
+      <br><br>
 
-        <label for="exercise3">Exercise 3:</label>
-        <select id="exercise3" name="exercise3">
-            <?php
-            foreach ($exercises as $id=>$exercise) {
-                echo "<option value=".$id.">".$exercise."</option>";
-            }
-            ?>
-        </select>
-        <br><br>
-        <label for="set3">Sets:</label>
-        <input type="number" id="set3" name="set3" required>
-        <br><br>
-        <label for="rep3">Reps:</label>
-        <input type="number" id="rep3" name="rep3" required>
-        <br><br><label for="rest3">Rest in Seconds:</label>
-        <input type="number" id="rest3" name="rest3" required>
-        <br><br>
-        <label for="weight3">Weight in kg:</label>
-        <input type="number" id="weight3" name="weight3" required>
-        <br><br>
-
+      <label for="exercise3">Exercise 3:</label>
+      <select id="exercise3" name="exercise3">
+          <?php
+          foreach ($exercises as $id=>$exercise) {
+              echo "<option value=".$id.">".$exercise."</option>";
+          }
+          ?>
+      </select>
+      <br><br>
+      <label for="set3">Sets:</label>
+      <input type="number" id="set3" name="set3" required>
+      <br><br>
+      <label for="rep3">Reps:</label>
+      <input type="number" id="rep3" name="rep3" required>
+      <br><br><label for="rest3">Rest in Seconds:</label>
+      <input type="number" id="rest3" name="rest3" required>
+      <br><br>
+      <label for="weight3">Weight in kg:</label>
+      <input type="number" id="weight3" name="weight3" required>
+      <br><br>
       <button type="submit" id="submit">Create Workout</button>
+      <br><br>
     </form>
     <footer>
       <nav>
