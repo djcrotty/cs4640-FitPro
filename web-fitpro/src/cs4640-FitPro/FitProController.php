@@ -69,8 +69,6 @@ class FitProController {
             case "edit_profile":
                 $this->edit_profile();
                 break;
-            case "edit_workouts":
-                $this->edit_workouts();
             case "logout":
                 $this->logout();
                 // no break; logout will also show the welcome page.
@@ -216,9 +214,11 @@ class FitProController {
         if($description == NULL) {
             $description = "";
         }
+
         $today_key = strtolower(date('l'))."_id";
         $today_workout_id = $db->query("SELECT $today_key FROM user_workouts WHERE id = $user_id")[0][$today_key];
         $today_workout_name = "Rest";
+
         $workouts = []; //2D array of workouts with a list of exercises
         for ($i = 1; $i <= $total_workouts; $i++) {
             $workout = $db->getWorkout($user_id, $i);
@@ -318,6 +318,17 @@ class FitProController {
             $user_id = $_SESSION["user_id"];
             $db->query("UPDATE users SET user_description = '$text' WHERE id = $user_id");
         }
+        if(isset($_POST["checked"])) {
+            $db = new Database();
+            for($i = 0; $i < count($_POST["workouts"]); $i++) {
+                $user_id = $_SESSION["user_id"];
+                $workout_id = $_POST["workouts"][$i];
+                $exercise_id = $_POST["exercises"][$i];
+                $checked = $_POST["checked"][$i];
+                $db->query("UPDATE user_exercises SET completed = $checked WHERE user_id = $user_id AND workout = $workout_id AND exercise_id = $exercise_id");
+            }
+        }
+
     }
     
 }

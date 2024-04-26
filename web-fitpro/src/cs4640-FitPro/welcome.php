@@ -17,9 +17,10 @@ function displayRandomWorkout() {
   
     //displays in html
     echo "<div class='left-side'>";
-    echo "<h6>Workout of the Day:</h6>";
-    echo "<h6>" . htmlspecialchars($randomWorkout['name']) . "</h6>";
-    echo "<p>" . htmlspecialchars($randomWorkout['description']) . "</p>";
+    echo "<h5>Workout of the Day:</h5>";
+    echo "<h6 id=random-workout-name>" . htmlspecialchars($randomWorkout['name']) . "</h6>";
+    echo "<p id=random-workout-description>" . htmlspecialchars($randomWorkout['description']) . "</p>";
+    echo "<button class=\"btn btn-light\" id=random-workout-button>New Workout</button>";
     echo "</div>";
   }
   ?>
@@ -43,6 +44,7 @@ function displayRandomWorkout() {
         <meta property="og:site_name" content="FitPro - Index">
         <title>FitPro - Index</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="styles/index.css">
      </head>
      <body>
@@ -144,5 +146,6 @@ function displayRandomWorkout() {
         </footer>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-     </body>
+      <script><?php require_once($GLOBALS["src_path"]."javascript/welcome.js");?></script>
+    </body>
   </html>

@@ -18,6 +18,7 @@
         
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <link rel="stylesheet" href="styles/calendar.css">
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/profile.css">
@@ -75,7 +76,7 @@
                         <h2>
                             <?=$name?>
                         </h2>
-                        <p id="user_description">
+                        <p id="user_description" class="">
                             <?=$description?>
                         </p>
                         <form id="description_form">
@@ -158,7 +159,7 @@
                             <tr>
                                 <td>1</td>
                                 <td><?= $exercises[$workout[0]["exercise_id"]]?></td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-1"></td>
+                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-0" exercise="<?=$workout[0]["exercise_id"]?>" workout="<?=$workout[0]["workout"]?>" <?php if($workout[0]["completed"] == 't') echo "checked=true";?>></td>
                                 <td><?=$workout[0]["sets"] ?></td>
                                 <td><?=$workout[0]["reps"] ?></td>
                                 <td><?=$workout[0]["rest"] ?></td>
@@ -166,7 +167,7 @@
                             <tr>
                                 <td>2</td>
                                 <td><?= $exercises[$workout[1]["exercise_id"]]?></td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-2"></td>
+                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-1" exercise="<?=$workout[1]["exercise_id"]?>" workout="<?=$workout[1]["workout"]?>" <?php if($workout[1]["completed"] == 't') echo "checked=true";;?>></td>
                                 <td><?=$workout[1]["sets"] ?></td>
                                 <td><?=$workout[1]["reps"] ?></td>
                                 <td><?=$workout[1]["rest"] ?></td>
@@ -174,7 +175,7 @@
                             <tr>
                                 <td>3</td>
                                 <td><?= $exercises[$workout[2]["exercise_id"]]?></td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-3"></td>
+                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-2" exercise="<?=$workout[2]["exercise_id"]?>" workout="<?=$workout[2]["workout"]?>" <?php if($workout[2]["completed"] == 't') echo "checked=true";?>></td>
                                 <td><?=$workout[2]["sets"] ?></td>
                                 <td><?=$workout[2]["reps"] ?></td>
                                 <td><?=$workout[2]["rest"] ?></td>
@@ -217,12 +218,8 @@
             </nav>
             <p>&copy; 2024 FitPro. All rights reserved.</p>
         </footer>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script>
-            <?php require_once($GLOBALS["src_path"]."javascript/calendar.js");?>
-        </script>
-        <script>
-            <?php require_once($GLOBALS["src_path"]."javascript/profile.js");?>
-        </script>
+        <script><?php require_once($GLOBALS["src_path"]."javascript/calendar.js");?></script>
+        <script><?php require_once($GLOBALS["src_path"]."javascript/profile.js");?></script>
+        <script><?php require_once($GLOBALS["src_path"]."javascript/workout_table.js");?></script>
     </body>
 </html>

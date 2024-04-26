@@ -1,5 +1,3 @@
-console.log("workouts");
-
 let $schedule_selectors = $("#schedule-list li select");
 $schedule_selectors.on("change", (event) => { //event listener and arrow function
     let $selector = $(event.target);

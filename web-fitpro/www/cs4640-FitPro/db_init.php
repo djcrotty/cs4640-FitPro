@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS user_exercises (
     weight INT,
     date_performed DATE,
     workout INT,
+    completed BOOLEAN DEFAULT FALSE,
     workout_name VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (exercise_id) REFERENCES exercises(id)

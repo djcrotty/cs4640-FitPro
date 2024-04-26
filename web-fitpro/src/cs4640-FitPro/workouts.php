@@ -16,6 +16,7 @@
         <meta property="og:description" content="Workouts base page for FitPro, a way for gymgoers to track and compete">
         <meta property="og:site_name" content="FitPro - Workouts">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/workouts.css">
@@ -114,80 +115,74 @@
                 </ul>
             </div>
             <?php if (empty($workouts)) { ?>
+                <a href="?command=createworkout">
+                <button class="border btn btn-light">
+                    Create New Workout +
+                </button>
+                </a>
+            <?php }
+                foreach ($workouts as $key => $workout) { 
+            ?>
+            <div class="p-3 m-3 bg-secondary" id="workouts-container-<?=$key?>">
+                <div class="d-flex flex-row align-items-center justify-content-between" id="workouts-selector-progress">
+                    <div>
+                        <div>
+                            <h4>
+                                Progress in <?=$workout[0]["workout_name"]?>
+                            </h4>
+                            <div>
+                                <p id="progress-bar-<?=$key?>">
+                                    75% Complete
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <a href="?command=createworkout">
-                    <button class="border btn btn-light">
+                    <button class="border btn btn-light h-25">
                         Create New Workout +
                     </button>
                     </a>
-            <?php } 
-                foreach ($workouts as $workout) { 
-            ?>
-                <div class="p-3 m-3 bg-secondary" id="workouts-container">
-                    <div class="d-flex flex-row align-items-center justify-content-between" id="workouts-selector-progress">
-                        <div>
-                            <div>
-                                <h4>
-                                    Progress in <?=$workout[0]["workout_name"]?>
-                                </h4>
-                                <div id="progress-bar">
-                                    <p>
-                                        75% Complete
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- <div class="btn-group" role="group" id="workout-selector">
-                                <button type="button" class="btn btn-light">Chest</button>
-                                <button type="button" class="btn btn-light">Legs</button>
-                                <button type="button" class="btn btn-light">Push</button>
-                                <button type="button" class="btn btn-light">Pull</button>
-                              </div> -->
-                        </div>
-                        <a href="?command=createworkout">
-                        <button class="border btn btn-light h-25">
-                            Create New Workout +
-                        </button>
-                        </a>
-                    </div>
-                    <div id="table">
-                        <table class="table table-striped table-dark">
-                            <tr>
-                                <th scope="col">Position</th>
-                                <th scope="col">Exercise</th>
-                                <th scope="col">Completion</th>
-                                <th scope="col">Sets</th>
-                                <th scope="col">Reps</th>
-                                <th scope="col">Rest(seconds)</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td><?= $exercises[$workout[0]["exercise_id"]]?></td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                                <td><?=$workout[0]["sets"] ?></td>
-                                <td><?=$workout[0]["reps"] ?></td>
-                                <td><?=$workout[0]["rest"] ?></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><?= $exercises[$workout[1]["exercise_id"]]?></td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                                <td><?=$workout[1]["sets"] ?></td>
-                                <td><?=$workout[1]["reps"] ?></td>
-                                <td><?=$workout[1]["rest"] ?></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><?= $exercises[$workout[2]["exercise_id"]]?></td>
-                                <td><input type="checkbox" value="Bench Press" aria-label="benchpress"></td>
-                                <td><?=$workout[2]["sets"] ?></td>
-                                <td><?=$workout[2]["reps"] ?></td>
-                                <td><?=$workout[2]["rest"] ?></td>
-                            </tr>
-                        </table>
-                    </div>
                 </div>
-                <?php } ?>
+                <div>
+                    <table class="table table-striped table-dark" id="<?=$key?>">
+                        <tr>
+                            <th scope="col">Position</th>
+                            <th scope="col">Exercise</th>
+                            <th scope="col">Completion</th>
+                            <th scope="col">Sets</th>
+                            <th scope="col">Reps</th>
+                            <th scope="col">Rest(seconds)</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td><?= $exercises[$workout[0]["exercise_id"]]?></td>
+                            <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-0" exercise="<?=$workout[0]["exercise_id"]?>" workout="<?=$workout[0]["workout"]?>" <?php if($workout[0]["completed"] == 't') echo "checked=true";?>></td>
+                            <td><?=$workout[0]["sets"] ?></td>
+                            <td><?=$workout[0]["reps"] ?></td>
+                            <td><?=$workout[0]["rest"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><?= $exercises[$workout[1]["exercise_id"]]?></td>
+                            <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-1" exercise="<?=$workout[1]["exercise_id"]?>" workout="<?=$workout[1]["workout"]?>" <?php if($workout[1]["completed"] == 't') echo "checked=true";;?>></td>
+                            <td><?=$workout[1]["sets"] ?></td>
+                            <td><?=$workout[1]["reps"] ?></td>
+                            <td><?=$workout[1]["rest"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><?= $exercises[$workout[2]["exercise_id"]]?></td>
+                            <td><input type="checkbox" value="Bench Press" aria-label="benchpress" id="workout-<?=$key?>-checkbox-2" exercise="<?=$workout[2]["exercise_id"]?>" workout="<?=$workout[2]["workout"]?>" <?php if($workout[2]["completed"] == 't') echo "checked=true";?>></td>
+                            <td><?=$workout[2]["sets"] ?></td>
+                            <td><?=$workout[2]["reps"] ?></td>
+                            <td><?=$workout[2]["rest"] ?></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+            <?php } ?>
         </div>
+
         <footer>
             <nav>
                <ul style="list-style: none; padding: 0; text-align: center;">
@@ -199,10 +194,7 @@
             </nav>
             <p>&copy; 2024 FitPro. All rights reserved.</p>
          </footer>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script>
-            <?php require_once($GLOBALS["src_path"]."/javascript/workouts.js");?>
-        </script>
+        <script><?php require_once($GLOBALS["src_path"]."/javascript/workouts.js");?></script>
+        <script><?php require_once($GLOBALS["src_path"]."javascript/workout_table.js");?></script>
     </body>
 </html>
