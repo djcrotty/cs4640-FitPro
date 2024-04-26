@@ -16,6 +16,7 @@
       <meta property="og:site_name" content="FitPro - CreateWorkout">
       <title>FitPro - Create Workout</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <link rel="stylesheet" href="styles/signin.css">
    </head>
    <body>
@@ -43,7 +44,7 @@
     <h1 class="top-title">Create A New Workout</h1>
     <form action="?command=executecreateworkout" method="post">
         <?php if (!empty($message)){ ?>
-        <div class="alert alert-danger col-xs-12">
+        <div class="alert alert-danger col-xs-12" id="message">
             <?=$message?>
         </div>
         <?php } ?>
@@ -126,5 +127,6 @@
      <p>&copy; 2024 FitPro. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script><?php require_once($GLOBALS["src_path"]."/javascript/createworkout.js");?></script>
   </body>
 </html>

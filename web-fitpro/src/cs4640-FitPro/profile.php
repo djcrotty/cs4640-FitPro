@@ -18,7 +18,6 @@
         
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <link rel="stylesheet" href="styles/calendar.css">
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/profile.css">
@@ -218,6 +217,7 @@
             </nav>
             <p>&copy; 2024 FitPro. All rights reserved.</p>
         </footer>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script><?php require_once($GLOBALS["src_path"]."javascript/calendar.js");?></script>
         <script><?php require_once($GLOBALS["src_path"]."javascript/profile.js");?></script>
         <script><?php require_once($GLOBALS["src_path"]."javascript/workout_table.js");?></script>
